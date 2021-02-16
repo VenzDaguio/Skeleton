@@ -15,7 +15,8 @@ public partial class _1Viewer : System.Web.UI.Page
         //get the data from the session object
         AnCustomer = (clsCustomer)Session["AnCustomer"];
         //display the house number for this entry
-        Response.Write(AnCustomer.HouseNo);
+        Response.Write(AnCustomer.CustomerAddress);
 
     }
-}
+
+    }

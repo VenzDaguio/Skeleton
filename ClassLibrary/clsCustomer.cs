@@ -7,7 +7,8 @@ namespace ClassLibrary
         //private data member for the customerID no property
         private Int32 mCustomerId;
 
-        public Int32 CustomerID {
+        public Int32 CustomerID
+        {
             get
             { //this line of code sends data out of the property
                 return mCustomerId;
@@ -20,7 +21,8 @@ namespace ClassLibrary
         }
         //SingUpDate private member variable
         private DateTime mSignUpDate;
-        public DateTime SignUpDate {
+        public DateTime SignUpDate
+        {
             get
             {
                 return mSignUpDate;
@@ -90,21 +92,35 @@ namespace ClassLibrary
             }
         }
 
-        public string HouseNo { get; set; }
 
         public bool Find(int customerID)
         {
-            //set the private data members to the test data value
-            mCustomerId = 21;
-            mSignUpDate = Convert.ToDateTime("16/09/2015");
-            mOver18 = true;
-            mDateOfBirth = Convert.ToDateTime("16/09/2016");
-            mCustomerPayment = "Test Payment";
-            mCustomerAddress = "Test Address";
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the addess no to search for
+            DB.AddParameter("@CustomerID", CustomerID);
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_FilterByCustomerID");
+            //if one record is found (there should be either one or zero!)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data members
+                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
+                mCustomerAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerAddress"]);
+                mCustomerPayment = Convert.ToStrig(DB.DataTable.Rows[0]["CustomerPayment"]);
+                mSignUpDate = Convert.ToDateTime(DB.DataTable.Rows[0]["SignUpDate"]);
+                mDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
+                mOver18 = Convert.ToBoolean(DB.DataTable.Rows[0]["Over18"]);
 
-
-            //always return true
-            return true;
+                //return that everything worked ok
+                return true;
+            }
+            //if no record was found
+            else
+            {
+                //return false indicatin a problem
+                return false;
+            }
         }
     }
 }
