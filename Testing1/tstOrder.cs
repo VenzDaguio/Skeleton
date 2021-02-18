@@ -35,12 +35,12 @@ namespace Testing1
         }
 
         [TestMethod]
-        public void DataReceivedPropertyOK()
+        public void DateReceivedPropertyOK()
         {
             clsOrder AnOrder = new clsOrder();
             DateTime TestData = DateTime.Now.Date;
-            AnOrder.DataReceived = TestData;
-            Assert.AreEqual(AnOrder.DataReceived, TestData);
+            AnOrder.DateReceived = TestData;
+            Assert.AreEqual(AnOrder.DateReceived, TestData);
         }
 
         [TestMethod]
@@ -123,6 +123,112 @@ namespace Testing1
                 OK = false;
             }
             //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestCustomerIDFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 21;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.CustomerId != 12)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+   
+        }
+
+        [TestMethod]
+        public void TestOrderPriceFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 21;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.OrderPrice != 1)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestDeliveredFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 21;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.Delivered != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestDescriptionFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 21;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.Description != "Blue Shirt")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestOrderLineIDFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 21;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.OrderLineId != 6)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestQuantityFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 21;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.Quantity != 10)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestDateReceivedFound()
+        {
+            clsOrder AnOrder = new clsOrder();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 OrderId = 21;
+            Found = AnOrder.Find(OrderId);
+            if (AnOrder.DateReceived != Convert.ToDateTime("25/03/2021"))
+            {
+                OK = false;
+            }
             Assert.IsTrue(OK);
         }
     }

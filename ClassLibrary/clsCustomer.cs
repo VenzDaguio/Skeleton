@@ -107,7 +107,7 @@ namespace ClassLibrary
                 //copy the data from the database to the private data members
                 mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
                 mCustomerAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerAddress"]);
-                mCustomerPayment = Convert.ToStrig(DB.DataTable.Rows[0]["CustomerPayment"]);
+                mCustomerPayment = Convert.ToString(DB.DataTable.Rows[0]["CustomerPayment"]);
                 mSignUpDate = Convert.ToDateTime(DB.DataTable.Rows[0]["SignUpDate"]);
                 mDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
                 mOver18 = Convert.ToBoolean(DB.DataTable.Rows[0]["Over18"]);
