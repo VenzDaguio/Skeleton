@@ -10,7 +10,7 @@
     <form id="form1" runat="server">
         <div>
             <asp:Label ID="lblCustomerID" runat="server" style="z-index: 1; left: 10px; top: 15px; position: absolute; height: 19px; width: 150px" Text="Customer ID"></asp:Label>
-            <asp:Button ID="btnFind" runat="server" OnClick="Button1_Click1" style="z-index: 1; left: 273px; top: 17px; position: absolute; width: 54px" Text="Find" />
+            <asp:Button ID="btnFind" runat="server" style="z-index: 1; left: 294px; top: 17px; position: absolute; width: 54px; bottom: 593px;" Text="Find" OnClick="btnFind_Click1" />
             <br />
         </div>
         <asp:TextBox ID="txtCustomerID" runat="server" style="z-index: 1; left: 130px; top: 16px; position: absolute" height="22px"></asp:TextBox>

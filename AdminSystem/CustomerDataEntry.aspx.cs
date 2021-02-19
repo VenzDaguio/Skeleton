@@ -8,7 +8,7 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
-   
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -19,12 +19,16 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsCustomer
         clsCustomer AnCustomer = new clsCustomer();
-        //capture the Customer Id
+        //capture the Customer Address
         AnCustomer.CustomerAddress = txtAdress.Text;
-        //AnCustomer.CustomerID = txtCustomerID.int32;
+        //capture the Customer Id
+        AnCustomer.CustomerID = Convert.ToInt32(txtCustomerID.Text);
+        //capture the customer payment info
         AnCustomer.CustomerPayment = txtPaymentInfo.Text;
-        //AnCustomer.DateOfBirth = txtBirthDate.Text;
-        //AnCustomer.SignUpDate = txtSign.Text;
+        //Captures the customers date of birth
+        AnCustomer.DateOfBirth = Convert.ToDateTime(txtBirthDate.Text);
+        //Captures the customers sign up date to the system
+        AnCustomer.SignUpDate = Convert.ToDateTime(txtSign.Text);
         //Store the address in the session object
         Session["AnCustomer"] = AnCustomer;
         //navigate to the viewer page
@@ -59,4 +63,5 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
         }
     }
+
 }
