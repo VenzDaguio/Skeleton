@@ -97,7 +97,7 @@ namespace ClassLibrary
         {
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
-            //add the parameter for the addess no to search for
+            //add the parameter for the customer id to search for
             DB.AddParameter("@CustomerID", CustomerID);
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_FilterByCustomerID");
