@@ -117,17 +117,36 @@ namespace ClassLibrary
 
         public bool Find(int OrderId)
         {
-            //set the private data members to test data value
-            mOrderId = 21;
-            mCustomerId = 12;
-            mDelivered = true;
-            mDescription = "Blue Shirt";
-            mOrderLineId = 6;
-            mQuantity = 10;
-            mDateReceived = Convert.ToDateTime("25/03/2021");
+            //create an instance of the data collection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the address no to search for
+            DB.AddParameter("@OrderId", OrderId);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrder_FilterByOrderId");
+            //if one record is found (there should be either one or zero)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data members
+                mOrderId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderId"]);
+                mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerId"]);
+                mOrderPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["OrderPrice"]);
+                mDelivered = Convert.ToBoolean(DB.DataTable.Rows[0]["Delivered"]);
+                mDescription = Convert.ToString(DB.DataTable.Rows[0]["Description"]);
+                mOrderLineId = Convert.ToInt32(DB.DataTable.Rows[0]["OrderLineId"]);
+                mQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["Quantity"]);
+                mDateReceived = Convert.ToDateTime(DB.DataTable.Rows[0]["DateReceived"]);
+                //always return true
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
-            //always return true
-            return true;
         }
     }
 }
+
+
+
+

@@ -114,11 +114,11 @@ namespace Testing1
             //Bolean variable to record if data is OK
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             //invoke the method
             Found = AnOrder.Find(OrderId);
             //check the order id
-            if (AnOrder.OrderId != 21)
+            if (AnOrder.OrderId != 1)
             {
                 OK = false;
             }
@@ -132,7 +132,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.CustomerId != 12)
             {
@@ -148,7 +148,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.OrderPrice != 1)
             {
@@ -163,7 +163,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.Delivered != true)
             {
@@ -178,7 +178,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.Description != "Blue Shirt")
             {
@@ -193,7 +193,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.OrderLineId != 6)
             {
@@ -208,7 +208,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.Quantity != 10)
             {
@@ -223,7 +223,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             Boolean Found = false;
             Boolean OK = true;
-            Int32 OrderId = 21;
+            Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
             if (AnOrder.DateReceived != Convert.ToDateTime("25/03/2021"))
             {
