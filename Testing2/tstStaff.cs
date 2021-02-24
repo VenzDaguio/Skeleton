@@ -59,7 +59,7 @@ namespace Testing2
 
 
         [TestMethod]
-        public void SalaryPropertyOK()
+        public void SalaryPropertyOk()
         {
             //create an instance of the class we want to create
             clsStaff AnStaff = new clsStaff();
@@ -72,7 +72,7 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void FirstNamePropertyOK()
+        public void FirstNamePropertyOk()
         {
             //create an instance of the class we want to create
             clsStaff AnStaff = new clsStaff();
