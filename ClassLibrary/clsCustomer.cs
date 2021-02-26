@@ -54,10 +54,12 @@ namespace ClassLibrary
         {
             get
             {
+                //return the private data
                 return mDateOfBirth;
             }
             set
             {
+                //set the private data
                 mDateOfBirth = value;
             }
         }
@@ -121,6 +123,86 @@ namespace ClassLibrary
                 //return false indicatin a problem
                 return false;
             }
+        }
+
+        public string Valid(
+                    string customerAddress,
+                    string customerPayment,
+                    string signUpDate,
+                    string dateOfBirth)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store date values
+            DateTime DateTemp;
+            //if the customer address is blank
+            if (customerAddress.Length == 0)
+            {
+                //record the error
+                Error = Error + "The address may not be blank:";
+            }
+            //if the customer address is greater than 6 characters
+            if (customerAddress.Length > 20)
+            {
+                //record the error
+                Error = Error + "The customer address must be lesss than 20 characters:";
+            }
+            //if the customer payment is blank
+            if (customerPayment.Length == 0)
+            {
+                //record the error
+                Error = Error + "The address may not be blank:";
+            }
+            //if the customer address is greater than 50 charcaters
+            if (customerPayment.Length > 50)
+            {
+                //record the error
+                Error = Error + "The customer address must be lesss than 50 characters:";
+            }
+            try
+            {
+                //copy the SigpUpdate value to the dateTemp variable
+                DateTemp = Convert.ToDateTime(signUpDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past:";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future:";
+                }
+            }
+            catch
+            {
+                Error = Error + "The date was not a vaile date:";
+            }
+            try
+            {
+                //copy the SigpUpdate value to the dateTemp variable
+                DateTemp = Convert.ToDateTime(dateOfBirth);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past:";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future:";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "the date was not a valid date:";
+            }
+
+            //return any error messages
+            return Error;
         }
     }
 }
