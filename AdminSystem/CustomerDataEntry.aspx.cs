@@ -17,26 +17,35 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        //create a new instance of clsCustomer
+        //create a new intance of clsCustomer
         clsCustomer AnCustomer = new clsCustomer();
-        //capture the Customer Address
-        AnCustomer.CustomerAddress = txtAdress.Text;
-        //capture the Customer Id
-        AnCustomer.CustomerID = Convert.ToInt32(txtCustomerID.Text);
-        //capture the customer payment info
-        AnCustomer.CustomerPayment = txtPaymentInfo.Text;
-        //Captures the customers date of birth
-        AnCustomer.DateOfBirth = Convert.ToDateTime(txtBirthDate.Text);
-        //Captures the customers sign up date to the system
-        AnCustomer.SignUpDate = Convert.ToDateTime(txtSign.Text);
-        //Store the address in the session object
-        Session["AnCustomer"] = AnCustomer;
-        //navigate to the viewer page
-        Response.Redirect("CustomerViewer.aspx");
+        //captue the customerAddress etc.
+        string CustomerAddress = txtAddress.Text;
+        string CustomerPayment = txtPayment.Text;
+        string SignUpDate = txtSignUp.Text;
+        string DateOfBirth = txtSignUp.Text;
+        //validate the data
+        Error = AnCustomer.Valid(CustomerAddress, CustomerPayment, SignUpDate, DateOfBirth);
+        if (Error == "")
+        {
+            AnCustomer.CustomerAddress = CustomerAddress;
+            AnCustomer.CustomerPayment = CustomerPayment;
+            AnCustomer.SignUpDate = Convert.ToDateTime(SignUpDate);
+            AnCustomer.DateOfBirth = Convert.ToDateTime(DateOfBirth);
+            //store the customer in the session object
+            Session["AnCustomer"] = AnCustomer;
+            //redirect to the viewer page
+            Response.Write("AddressViewer.aspx");
+        }
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
+        
+
 
     }
-
-
     protected void btnFind_Click(object sender, EventArgs e)
     {
         //create an instance of the customer class
@@ -62,6 +71,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
         }
-    }
 
+    }
 }
