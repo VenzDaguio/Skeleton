@@ -15,5 +15,10 @@ namespace Testing4
         public decimal Price { get; internal set; }
         public object ClothesColour { get; internal set; }
         public string ClothesDescription { get; internal set; }
+
+        internal bool Find(int clothesNo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

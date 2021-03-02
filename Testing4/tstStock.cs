@@ -89,6 +89,43 @@ namespace Testing4
             Assert.AreEqual(AnStock.ClothesDescription, TestData);
 
         }
+        [TestMethod]
+        public void FindMethodOk()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //Bollean variable to store the results of the validation
+            Boolean Found = false;
+            //create some test data to use with the method 
+            Int32 ClothesNo = 12;
+            //invoke the method 
+            Found = AnStock.Find(ClothesNo);
+            //test to see if the result is true
+            Assert.IsTrue(Found);
+
+        }
+        [TestMethod]
+        public void TestClothesNoFound()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is )
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ClothesNo = 12;
+            //invoke the method
+            Found = AnClothes.Find(ClothesNo);
+            //check the Clothes no
+            if (AnClothes. ClothesNo != 12)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
 
 
 
