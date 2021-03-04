@@ -126,6 +126,113 @@ namespace Testing4
             Assert.IsTrue(OK);
         }
 
+        [TestMethod]
+        public void TestClothesDescription()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is )
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ClothesNo = 12;
+            //invoke the method
+            Found = AnClothes.Find(ClothesDescription);
+            //check the Clothes Description
+            if (AnClothes.ClothesDescription != "large shirt")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestClothesColour()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is )
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ClothesNo = 12;
+            //invoke the method
+            Found = AnClothes.Find(ClothesColour);
+            //check the Clothes Colour
+            if (AnClothes.ClothesColour != "red")
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void TestPrice()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is )
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ClothesNo = 12;
+            //invoke the method
+            Found = AnClothes.Find(Price);
+            //check the Clothes no
+            if (AnClothes.Price != 1)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void Available()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is )
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ClothesNo = 12;
+            //invoke the method
+            Found = AnClothes.Find(Available);
+            //check the Available
+            if (AnClothes.Available != true)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestDateAdded()
+        {
+            //create an instance of the class we want to create
+            clsAddress AnStock = new clsStock();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 ClothesNo = 12;
+            //invoke the method
+            Found = AnStock.Find(ClothesNo);
+            //check the property
+            if (AnStock.DateAdded != Convert.ToDateTime("16/09/2021"))
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
 
 
 
@@ -136,7 +243,10 @@ namespace Testing4
 
 
 
-     }
+
+
+
+    }
 }
 
 
