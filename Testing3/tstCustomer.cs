@@ -284,7 +284,7 @@ namespace Testing3
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string CustomerAddress = "aaa"; //this should pass
+            string CustomerAddress = "aa"; //this should pass
             //invoke the method
             Error = AnCustomer.Valid(CustomerAddress, CustomerPayment, SignUpDate, DateOfBirth);
             //test to see that the result is correct
@@ -299,8 +299,7 @@ namespace Testing3
             String Error = "";
             //create some test data to pass to the method
             //this should pass
-            string CustomerAddress = "";
-            CustomerAddress = CustomerAddress.PadRight(29, 'a');
+            string CustomerAddress = "aaaa"; //this should be ok
             //invoke the method
             Error = AnCustomer.Valid(CustomerAddress, CustomerPayment, SignUpDate, DateOfBirth);
             //test to see that the result is correct
@@ -328,8 +327,7 @@ namespace Testing3
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string CustomerAddress = "";
-            CustomerAddress = CustomerAddress.PadRight(20, 'a');
+            string CustomerAddress = "aaaaaa";
             //invoke the method
             Error = AnCustomer.Valid(CustomerAddress, CustomerPayment, SignUpDate, DateOfBirth);
             //test to see that the result is correct
@@ -343,8 +341,7 @@ namespace Testing3
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string CustomerAddress = ""; //this should be ok
-            CustomerAddress = CustomerAddress.PadRight(25, 'a');
+            string CustomerAddress = "aaa"; //this should be ok
             //invoke the method
             Error = AnCustomer.Valid(CustomerAddress, CustomerPayment, SignUpDate, DateOfBirth);
             //test to see that the result is correct
@@ -359,6 +356,7 @@ namespace Testing3
             String Error = "";
             //create some test data to pass to the method
             string CustomerAddress = "";
+            CustomerAddress = CustomerAddress.PadRight(500, 'a'); // should fail
             //invoke the method
             Error = AnCustomer.Valid(CustomerAddress, CustomerPayment, SignUpDate, DateOfBirth);
             //test to see that the result is correct
@@ -394,6 +392,23 @@ namespace Testing3
             Assert.AreEqual(Error, "");
         }
         [TestMethod]
+        public void CustomerPaymentMinplusOne()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string CustomerPayment = "aaa"; //this should be ok
+            //invoke the method
+            Error = AnCustomer.Valid(CustomerAddress, CustomerPayment, SignUpDate, DateOfBirth);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+
+
+        [TestMethod]
         public void CustomerPaymentMaxlessOne()
         {
             //create an instance of the class we want to create
@@ -401,7 +416,7 @@ namespace Testing3
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string CustomerPayment = "aa"; //this should be ok
+            string CustomerPayment = "aa";//this should be ok
             //invoke the method
             Error = AnCustomer.Valid(CustomerAddress, CustomerPayment, SignUpDate, DateOfBirth);
             //test to see that the result is correct
@@ -429,8 +444,7 @@ namespace Testing3
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string CustomerPayment = "";
-            
+            string CustomerPayment = "aaa"; //should pass
             //invoke the method
             Error = AnCustomer.Valid(CustomerAddress, CustomerPayment, SignUpDate, DateOfBirth);
             //test to see that the result is correct
@@ -444,8 +458,7 @@ namespace Testing3
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string CustomerPayment = ""; //this should be ok
-            
+            string CustomerPayment = "aaa"; //this should be ok
             //invoke the method
             Error = AnCustomer.Valid(CustomerAddress, CustomerPayment, SignUpDate, DateOfBirth);
             //test to see that the result is correct
@@ -460,6 +473,7 @@ namespace Testing3
             String Error = "";
             //create some test data to pass to the method
             string CustomerPayment = "";
+            CustomerPayment = CustomerPayment.PadRight(500, 'a'); //this should fail
             //invoke the method
             Error = AnCustomer.Valid(CustomerAddress, CustomerPayment, SignUpDate, DateOfBirth);
             //test to see that the result is correct
@@ -678,7 +692,21 @@ namespace Testing3
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
-       
+        [TestMethod]
+        public void DateOfBirthInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            //string variable to store any error message
+            String Error = "";
+            //set the SignUpDtate to a non date value
+            string DateOfBirth = "this is not a date!";
+            //invoke the method 
+            Error = AnCustomer.Valid(CustomerAddress, CustomerPayment, SignUpDate, DateOfBirth);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
     }
 }
 
