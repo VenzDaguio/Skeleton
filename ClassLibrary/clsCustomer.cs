@@ -95,7 +95,7 @@ namespace ClassLibrary
         }
 
 
-        public bool Find(int customerID)
+        public bool Find(int CustomerID)
         {
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
@@ -109,7 +109,7 @@ namespace ClassLibrary
                 //copy the data from the database to the private data members
                 mCustomerId = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
                 mCustomerAddress = Convert.ToString(DB.DataTable.Rows[0]["CustomerAddress"]);
-                mCustomerPayment = Convert.ToString(DB.DataTable.Rows[0]["CustomerPayment"]);
+                mCustomerPayment = Convert.ToString(DB.DataTable.Rows[0]["CustomerPaymentInfo"]);
                 mSignUpDate = Convert.ToDateTime(DB.DataTable.Rows[0]["SignUpDate"]);
                 mDateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[0]["DateOfBirth"]);
                 mOver18 = Convert.ToBoolean(DB.DataTable.Rows[0]["Over18"]);
@@ -133,20 +133,20 @@ namespace ClassLibrary
         {
             //create a string variable to store the error
             String Error = "";
-            //create a temporary variable to store date values
             DateTime DateTemp;
             //if the customer address is blank
             if (customerAddress.Length == 0)
             {
                 //record the error
-                Error = Error + "The address may not be blank:";
+                Error = Error + "The address may not be blank : ";
             }
             //if the customer address is greater than 6 characters
             if (customerAddress.Length > 20)
             {
                 //record the error
-                Error = Error + "The customer address must be lesss than 20 characters:";
+                Error = Error + "The customer address must be lesss than 20 characters : ";
             }
+            return Error;
             //if the customer payment is blank
             if (customerPayment.Length == 0)
             {
@@ -159,6 +159,7 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The customer address must be lesss than 50 characters:";
             }
+            return Error;
             try
             {
                 //copy the SigpUpdate value to the dateTemp variable
@@ -166,39 +167,39 @@ namespace ClassLibrary
                 if (DateTemp < DateTime.Now.Date)
                 {
                     //record the error
-                    Error = Error + "The date cannot be in the past:";
+                    Error = Error + "The date cannot be in the past : ";
                 }
                 //check to see if the date is greater than today's date
                 if (DateTemp > DateTime.Now.Date)
                 {
                     //record the error
-                    Error = Error + "The date cannot be in the future:";
+                    Error = Error + "The date cannot be in the future : ";
                 }
             }
             catch
             {
-                Error = Error + "The date was not a vaile date:";
+                Error = Error + "The date was not a valid date:";
             }
             try
             {
-                //copy the SigpUpdate value to the dateTemp variable
+                //copy the DateOfBirth value to the dateTemp variable
                 DateTemp = Convert.ToDateTime(dateOfBirth);
                 if (DateTemp < DateTime.Now.Date)
                 {
                     //record the error
-                    Error = Error + "The date cannot be in the past:";
+                    Error = Error + "The date cannot be in the past : ";
                 }
                 //check to see if the date is greater than today's date
                 if (DateTemp > DateTime.Now.Date)
                 {
                     //record the error
-                    Error = Error + "The date cannot be in the future:";
+                    Error = Error + "The date cannot be in the future : ";
                 }
             }
             catch
             {
                 //record the error
-                Error = Error + "the date was not a valid date:";
+                Error = Error + "the date was not a valid date : ";
             }
 
             //return any error messages
