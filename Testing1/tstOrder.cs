@@ -7,6 +7,12 @@ namespace Testing1
     [TestClass]
     public class tstOrder
     {
+
+        //good test data
+        //create some test data to pass to the method
+        string Description = "A blue shirt";
+        string DateReceived = DateTime.Now.Date.ToString();
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -150,7 +156,7 @@ namespace Testing1
             Boolean OK = true;
             Int32 OrderId = 1;
             Found = AnOrder.Find(OrderId);
-            if (AnOrder.OrderPrice != 1)
+            if (AnOrder.OrderPrice != 2)
             {
                 OK = false;
             }
@@ -230,6 +236,100 @@ namespace Testing1
                 OK = false;
             }
             Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //string variable to store any error message
+            String Error = "";
+            //invoke the method
+            Error = AnOrder.Valid(Description, DateReceived);
+            //test to see that the result is correct
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DescriptionMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            string Error = "";
+            string Description = "";
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DescriptionMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Description = "t";
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DescriptionMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Description = "tt";
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DescriptionMaxLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Description = "ttttttttttttttttttttttttttttttttttttttttttttttttt";
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DescriptionMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Description = "tttttttttttttttttttttttttttttttttttttttttttttttttt";
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DescriptionMid()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Description = "ttttttttttttttttttttttttt";
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DescriptionMaxPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Description = "ttttttttttttttttttttttttttttttttttttttttttttttttttt";
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DescriptionExtremeMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string Description = "";
+            Description = Description.PadRight(500, 't');
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreNotEqual(Error, "");
         }
     }
 }
