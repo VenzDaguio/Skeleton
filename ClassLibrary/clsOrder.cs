@@ -144,6 +144,20 @@ namespace ClassLibrary
             }
 
         }
+
+        public string Valid(string description, string dateReceived)
+        {
+            String Error = "";
+            if (description.Length == 0)
+            {
+                Error = Error + "The description may not be blank: ";
+            }
+            if (description.Length > 50)
+            {
+                Error = Error + "The description must be less than 50 characters: ";
+            }
+            return Error;
+        }
     }
 }
 
