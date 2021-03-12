@@ -119,18 +119,42 @@ namespace ClassLibrary
             }
         }
 
+        public string ClothesNO { get; set; }
+
         public bool Find(int clothesNo)
         {
-            //set the private data members to the test data value
-            mClothesNo = 12;
-            mClothesDescription = "large shirt";
-            mClothesColour = "red";
-            mDateAdded = Convert.ToDateTime("16/9/2021");
-            mPrice = 1;
-            mAvailable = true;
+            //create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add the parameter for the address no to search for 
+            DB.Execute("sproc_tblClothes_FilterByClothesNo");
+            //if one record is found (there should be either one or zero!)
+            if (DB.Count == 1)
+            {
+                //copy the data from the database to the private data members
+                mClothesNo = Convert.ToInt32(DB.DataTable.Rows[0]["ClothesNo"]);
+                mClothesDescription = Convert.ToString(DB.DataTable.Rows[0]["ClothesDescription"]);
+                mClothesColour = Convert.ToString(DB.DataTable.Rows[0]["ClothesColour"]);
+                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
+                mAvailable = Convert.ToBoolean(DB.DataTable.Rows[0]["Available"]);
+                mPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["Price"]);
+                //return that everything worked Ok
+                return true;
 
-            //always return true
-            return true;
+
+
+
+            }
+            //if no record was found
+            else
+            {
+                //return false indicating a problem 
+                return false;
+            }
         }
+            
+             
+            
+            
+        
     }
 }

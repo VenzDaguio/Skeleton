@@ -20,11 +20,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create an instance clsStock
         clsStock AnStock = new clsStock();
         // capture the ClothesNo
-        AnStock.ClothesNo = txtClothesNo.Text;
+        AnStock.ClothesDescription = txtClothesDescription.Text;
         // store the Stock in the session object
         Session["AnStock"] = AnStock;
         //Navigate to the viewer page 
-        Response.Redirect("AddressBookViewer.aspx");
+        Response.Redirect("StockViewer.aspx");
 
 
 
@@ -54,4 +54,31 @@ public partial class _1_DataEntry : System.Web.UI.Page
             
         }
 }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        //create an instance of the Stock class
+        clsStock AnStock = new clsStock();
+        //variable to store the primary key 
+        Int32 ClothesNo;
+        //variable to store the result of the find operation
+        Boolean Found = false;
+        //get the primary key entered by the user 
+        ClothesNo = Convert.ToInt32(txtClothesNo.Text);
+        //find the record
+        Found = AnStock.Find(ClothesNo);
+        //if found
+        if (Found == true)
+        {
+            //dsiplay the values of the properties in the form 
+            txtClothesNo.Text = AnStock.ClothesNO;
+            txtClothesDescription.Text = AnStock.ClothesDescription;
+            txtPrice.Text = AnStock.Price.ToString();
+            txtClothesColour.Text = AnStock.ClothesColour.ToString();
+            txtDateAdded.Text = AnStock.DateAdded.ToString();
+
+
+
+        }
+    }
 }
