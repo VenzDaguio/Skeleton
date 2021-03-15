@@ -2,7 +2,7 @@
 
 namespace ClassLibrary
 {
-    public class Customer
+    public class clsCustomer
     {
         //private data member for the customerID no property
         private Int32 mCustomerId;
@@ -125,64 +125,31 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(
-                    string customerAddress,
+
+        public string Valid(string customerAddress,
                     string customerPayment,
                     string signUpDate,
                     string dateOfBirth)
         {
             //create a string variable to store the error
             String Error = "";
+            //create a temporary variable to store date values
             DateTime DateTemp;
-            //if the customer address is blank
+            //if the HouseNo is blank
             if (customerAddress.Length == 0)
             {
                 //record the error
-                Error = Error + "The address may not be blank : ";
+                Error = Error + "The customerAddress no may not be blank : ";
             }
-            //if the customer address is greater than 6 characters
-            if (customerAddress.Length > 20)
+            //if the house no is greater than 6 characters
+            if (customerAddress.Length > 9)
             {
                 //record the error
-                Error = Error + "The customer address must be lesss than 20 characters : ";
-            }
-            return Error;
-            //if the customer payment is blank
-            if (customerPayment.Length == 0)
-            {
-                //record the error
-                Error = Error + "The address may not be blank:";
-            }
-            //if the customer address is greater than 50 charcaters
-            if (customerPayment.Length > 50)
-            {
-                //record the error
-                Error = Error + "The customer address must be lesss than 50 characters:";
-            }
-            return Error;
-            try
-            {
-                //copy the SigpUpdate value to the dateTemp variable
-                DateTemp = Convert.ToDateTime(signUpDate);
-                if (DateTemp < DateTime.Now.Date)
-                {
-                    //record the error
-                    Error = Error + "The date cannot be in the past : ";
-                }
-                //check to see if the date is greater than today's date
-                if (DateTemp > DateTime.Now.Date)
-                {
-                    //record the error
-                    Error = Error + "The date cannot be in the future : ";
-                }
-            }
-            catch
-            {
-                Error = Error + "The date was not a valid date:";
+                Error = Error + "The customerAddress no must be less than 9 characters : ";
             }
             try
             {
-                //copy the DateOfBirth value to the dateTemp variable
+                //copy the dateAdded value to the DateTemp variable
                 DateTemp = Convert.ToDateTime(dateOfBirth);
                 if (DateTemp < DateTime.Now.Date)
                 {
@@ -199,16 +166,46 @@ namespace ClassLibrary
             catch
             {
                 //record the error
-                Error = Error + "the date was not a valid date : ";
+                Error = Error + "The date was not a valid date : ";
+            }
+
+            //is the post code blank
+            if (customerPayment.Length == 0)
+            {
+                //record the error
+                Error = Error + "The customerPayment may not be blank : ";
+            }
+            //if the post code is too long
+            if (customerPayment.Length > 9)
+            {
+                //record the error
+                Error = Error + "The customerPayment must be less than 9 characters : ";
+            }
+            try
+            {
+                //copy the dateAdded value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(signUpDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
             }
 
             //return any error messages
             return Error;
         }
 
-        public static implicit operator Customer(clsCustomerCollection v)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

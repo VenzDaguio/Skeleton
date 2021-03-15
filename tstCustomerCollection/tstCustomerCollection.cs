@@ -18,8 +18,8 @@ namespace tstCustomerCollection
         public void CustomerListOK()
         {
             clsCustomerCollection AllCustomers = new clsCustomerCollection();
-            List<Customer> TestList = new List<Customer>();
-            Customer TestItem = new Customer();
+            List<clsCustomer> TestList = new List<clsCustomer>();
+            clsCustomer TestItem = new clsCustomer();
             TestItem.Over18 = true;
             TestItem.CustomerID = 1;
             TestItem.CustomerPayment = "Siren Ocean etc.";
@@ -35,7 +35,7 @@ namespace tstCustomerCollection
         public void ThisCustomerPropertyOK()
         {
             clsCustomerCollection AllCustomers = new clsCustomerCollection();
-            Customer TestCustomer = new Customer();
+            clsCustomer TestCustomer = new clsCustomer();
             TestCustomer.Over18 = true;
             TestCustomer.CustomerID = 1;
             TestCustomer.CustomerPayment = "Siren Ocean etc.";
@@ -51,8 +51,8 @@ namespace tstCustomerCollection
         public void ListAndCountOK()
         {
             clsCustomerCollection AllCustomers = new clsCustomerCollection();
-            List<Customer> TestList = new List<Customer>();
-            Customer TestItem = new Customer();
+            List<clsCustomer> TestList = new List<clsCustomer>();
+            clsCustomer TestItem = new clsCustomer();
             TestItem.Over18 = true;
             TestItem.CustomerID = 1;
             TestItem.CustomerPayment = "Siren Ocean etc.";
