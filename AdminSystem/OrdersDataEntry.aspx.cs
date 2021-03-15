@@ -12,10 +12,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
-        //get the data from the session object
-        AnOrder = (clsOrder) Session["AnOrder"];
-        //display the house number for this entry
-        Response.Write(AnOrder.Description);
+        string CustomerId = txtCustomerID.Text;
+        string OrderPrice = txtOrderPrice.Text;
+        string Description = txtDescription.Text;
+        string Quantity = txtQuantity.Text;
+        string DateReceived = txtDateReceived.Text;
+        string Error = "";
+        Error = AnOrder.Valid(DateReceived, Description);
+        if (Error == "")
+        {
+            AnOrder.Description = Description;
+            AnOrder.DateReceived = Convert.ToDateTime(DateReceived);
+            Session["AnOrder"] = AnOrder;
+            Response.Write("OrdersViewer.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
+
 
     }
 
