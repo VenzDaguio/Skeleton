@@ -2,7 +2,7 @@
 
 namespace ClassLibrary
 {
-    public class clsCustomer
+    public class Customer
     {
         //private data member for the customerID no property
         private Int32 mCustomerId;
@@ -204,6 +204,11 @@ namespace ClassLibrary
 
             //return any error messages
             return Error;
+        }
+
+        public static implicit operator Customer(clsCustomerCollection v)
+        {
+            throw new NotImplementedException();
         }
     }
 }
