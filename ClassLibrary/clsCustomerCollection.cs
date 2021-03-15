@@ -5,9 +5,9 @@ namespace ClassLibrary
 {
     public class clsCustomerCollection
     {
-        List<Customer> mCustomerList = new List<Customer>();
+        List<clsCustomer> mCustomerList = new List<clsCustomer>();
 
-        public List<Customer> CustomerList
+        public List<clsCustomer> CustomerList
         {
             get{
                 return mCustomerList;
@@ -19,8 +19,29 @@ namespace ClassLibrary
             }
         }
        
+        public int Count
+        {
+            get
+            {
+                return mCustomerList.Count;
+            }
+            set
+            {
 
-        public Customer ThisCustomer { get; set; }
+            }
+        }
+        public clsCustomer ThisCustomer
+        {
+            get
+            {
+                return ThisCustomer;
+            }
+
+            set
+            {
+                //
+            }
+        }
 
         public clsCustomerCollection()
         {
@@ -31,7 +52,7 @@ namespace ClassLibrary
             RecordCount = DB.Count;
             while (Index < RecordCount)
             {
-                Customer AnCustomer = new Customer();
+                clsCustomer AnCustomer = new clsCustomer();
                 AnCustomer.Over18 = Convert.ToBoolean(DB.DataTable.Rows[Index]["Over18"]);
                 AnCustomer.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
                 AnCustomer.CustomerPayment = Convert.ToString(DB.DataTable.Rows[Index]["CustomerPaymentInfo"]);
