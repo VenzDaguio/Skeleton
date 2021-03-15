@@ -5,11 +5,9 @@ namespace ClassLibrary
     public class clsStock
     {
         //private data member for the address no property
-        private Int32 mStockNo;
+        private Int32 mStock;
         
-        public clsStock()
-        {
-        }
+        
 
 
         //ClothesNo private member variable 

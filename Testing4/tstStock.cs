@@ -32,7 +32,7 @@ namespace Testing4
         public void DateAddedPropertyOK()
         {
             //create an instance of the class we want to create
-            clsStock AnStock = new clsStock();
+           clsStock AnStock = new clsStock();
             //create some test data to assign to the property
             DateTime TestData = DateTime.Now.Date;
             // assign the data to the property
@@ -62,7 +62,7 @@ namespace Testing4
             clsStock AnStock = new clsStock();
             Decimal TestData = 1;
             AnStock.Price = TestData;
-            Assert.AreEqual(AnClothes.Price, TestData);
+            Assert.AreEqual(AnStock.Price, TestData);
         }
         [TestMethod]
         public void ClothesColourPropertyOK()
@@ -116,9 +116,9 @@ namespace Testing4
             //create some test data to use with the method
             Int32 ClothesNo = 12;
             //invoke the method
-            Found = AnClothes.Find(ClothesNo);
+            Found = AnStock.Find(ClothesNo);
             //check the Clothes no
-            if (AnClothes. ClothesNo != 12)
+            if (AnStock. ClothesNo != 12)
             {
                 OK = false;
             }
@@ -138,9 +138,9 @@ namespace Testing4
             //create some test data to use with the method
             Int32 ClothesNo = 12;
             //invoke the method
-            Found = AnClothes.Find(ClothesDescription);
+            Found = AnStock.Find(ClothesNo);
             //check the Clothes Description
-            if (AnClothes.ClothesDescription != "large shirt")
+            if (AnStock.ClothesDescription != "large shirt")
             {
                 OK = false;
             }
@@ -159,9 +159,9 @@ namespace Testing4
             //create some test data to use with the method
             Int32 ClothesNo = 12;
             //invoke the method
-            Found = AnClothes.Find(ClothesColour);
+            Found = AnStock.Find(ClothesNo);
             //check the Clothes Colour
-            if (AnClothes.ClothesColour != "red")
+            if (AnStock.ClothesColour != "red")
             {
                 OK = false;
             }
@@ -181,9 +181,9 @@ namespace Testing4
             //create some test data to use with the method
             Int32 ClothesNo = 12;
             //invoke the method
-            Found = AnClothes.Find(Price);
+            Found = AnStock.Find(ClothesNo);
             //check the Clothes no
-            if (AnClothes.Price != 1)
+            if (AnStock.Price != 1)
             {
                 OK = false;
             }
@@ -203,9 +203,9 @@ namespace Testing4
             //create some test data to use with the method
             Int32 ClothesNo = 12;
             //invoke the method
-            Found = AnClothes.Find(Available);
+            Found = AnStock.Find(ClothesNo);
             //check the Available
-            if (AnClothes.Available != true)
+            if (AnStock.Available != true)
             {
                 OK = false;
             }
@@ -216,7 +216,7 @@ namespace Testing4
         public void TestDateAdded()
         {
             //create an instance of the class we want to create
-            clsAddress AnStock = new clsStock();
+            clsStock AnStock = new clsStock();
             //boolean variable to store the result of the search
             Boolean Found = false;
             //boolean variable to record if data is OK (assume it is)
