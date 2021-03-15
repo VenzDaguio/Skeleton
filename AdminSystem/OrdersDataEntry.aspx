@@ -10,7 +10,7 @@
     This is the order entry page
     <form id="form1" runat="server">
         <asp:Label ID="lblOrderID" runat="server" Text="Order ID:" width="89px"></asp:Label>
-        <asp:TextBox ID="txtOrderID" runat="server" OnTextChanged="txtOrderID_TextChanged"></asp:TextBox>
+        <asp:TextBox ID="txtOrderID" runat="server"></asp:TextBox>
         <asp:Button ID="btnFind" runat="server" OnClick="Button1_Click" Text="Find" />
         <div>
             <asp:Label ID="lblCustomerID" runat="server" Text="Customer ID:" width="89px"></asp:Label>
@@ -19,7 +19,7 @@
             <asp:Label ID="lblDateReceived" runat="server" Text="Date Received: " width="89px"></asp:Label>
             <asp:TextBox ID="txtDateReceived" runat="server"></asp:TextBox>
             <br />
-            <asp:CheckBox ID="chkDelivered" runat="server" Text="Delivered" OnCheckedChanged="chkDelivered_CheckedChanged" />
+            <asp:CheckBox ID="chkDelivered" runat="server" Text="Delivered"/>
             <br />
             <asp:Label ID="lblOrderPrice" runat="server" Text="Order Price: " width="89px"></asp:Label>
             <asp:TextBox ID="txtOrderPrice" runat="server"></asp:TextBox>
