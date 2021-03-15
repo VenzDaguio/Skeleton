@@ -331,5 +331,69 @@ namespace Testing1
             Error = AnOrder.Valid(Description, DateReceived);
             Assert.AreNotEqual(Error, "");
         }
+
+        [TestMethod]
+        public void DateReceivedExtremeMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(-100);
+            string DateReceived = TestDate.ToString();
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateReceivedMinLessOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(-1);
+            string DateReceived = TestDate.ToString();
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateReceivedMin()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            string DateReceived = TestDate.ToString();
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateReceivedMinPlusOne()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddDays(1);
+            string DateReceived = TestDate.ToString();
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateReceivedExtremeMax()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            DateTime TestDate;
+            TestDate = DateTime.Now.Date;
+            TestDate = TestDate.AddYears(100);
+            string DateReceived = TestDate.ToString();
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreNotEqual(Error, "");
+        }
     }
 }

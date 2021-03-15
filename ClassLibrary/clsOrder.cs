@@ -148,6 +148,7 @@ namespace ClassLibrary
         public string Valid(string description, string dateReceived)
         {
             String Error = "";
+            DateTime DateTemp;
             if (description.Length == 0)
             {
                 Error = Error + "The description may not be blank: ";
@@ -155,6 +156,15 @@ namespace ClassLibrary
             if (description.Length > 50)
             {
                 Error = Error + "The description must be less than 50 characters: ";
+            }
+            DateTemp = Convert.ToDateTime(dateReceived);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the past: ";
+            }
+            if (DateTemp > DateTime.Now.Date)
+            {
+                Error = Error + "The date cannot be in the future: ";
             }
             return Error;
         }
