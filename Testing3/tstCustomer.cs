@@ -728,6 +728,31 @@ namespace Testing3
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsCustomer AnCustomer = new clsCustomer();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+
+            TestItem.Over18 = true;
+            TestItem.CustomerID = 1;
+            TestItem.CustomerPayment = "123a";
+            TestItem.CustomerAddress = "Western Road";
+            TestItem.SignUpDate = DateTime.Now.Date;
+            TestItem.DateOfBirth = DateTime.Now.Date;
+
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerID = PrimaryKey;
+
+            AllCustomers.ThisCustomer.find(PrimaryKey);
+            //invoke the method 
+            Assert.AreEqual(AllCustome)
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
 
     }
 }
