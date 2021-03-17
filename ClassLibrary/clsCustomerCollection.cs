@@ -9,9 +9,10 @@ namespace ClassLibrary
 
         public List<clsCustomer> CustomerList
         {
-            get{
-                return mCustomerList;
-                }
+            get
+            {
+               return mCustomerList;
+            }
 
             set
             {
@@ -23,7 +24,7 @@ namespace ClassLibrary
         {
             get
             {
-                return mCustomerList.Count;
+               return mCustomerList.Count;
             }
             set
             {
@@ -34,7 +35,7 @@ namespace ClassLibrary
         {
             get
             {
-                return ThisCustomer;
+               return ThisCustomer;
             }
 
             set

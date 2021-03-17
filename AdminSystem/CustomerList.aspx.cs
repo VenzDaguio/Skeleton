@@ -19,7 +19,7 @@ public partial class _Default : System.Web.UI.Page
     void DisplayCustomers()
     {
         clsCustomerCollection Customers = new clsCustomerCollection();
-        lstCustomers.DataSource = Customer.CustomerList;
+        lstCustomers.DataSource = Customers.CustomerList;
 
         lstCustomers.DataValueField = "CustomerID";
         lstCustomers.DataTextField = "CustomerAddress";
