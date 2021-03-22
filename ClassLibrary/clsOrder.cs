@@ -157,14 +157,21 @@ namespace ClassLibrary
             {
                 Error = Error + "The description must be less than 50 characters: ";
             }
-            DateTemp = Convert.ToDateTime(dateReceived);
-            if (DateTemp < DateTime.Now.Date)
+            try
             {
-                Error = Error + "The date cannot be in the past: ";
+                DateTemp = Convert.ToDateTime(dateReceived);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the past: ";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future: ";
+                }
             }
-            if (DateTemp > DateTime.Now.Date)
+            catch
             {
-                Error = Error + "The date cannot be in the future: ";
+                Error = Error + "The date was not a valid date: ";
             }
             return Error;
         }
