@@ -149,7 +149,27 @@ namespace ClassLibrary
                 return false;
             }
         }
-            
+            public string Valid( string ClothesColour string DateAdded string price)
+        {
+            //create a string variable to store the error
+            string Error = "";
+            //if the ClothesNo is blank
+            if (ClothesColour.Length == 0)
+            {
+                //record the error
+                Error = Error + "The clothes no may not be blank : ";
+
+            }
+            //if ClothesColour is greater than 9characters
+            if (ClothesColour.Length > 9)
+            {
+                //record the error
+                Error = Error + "ClothesColour must be lass than 9 characters : ";
+            }
+            //return any error messages
+            return Error;
+
+        }
              
             
             
