@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using ClassLibrary;
 
 namespace Testing4
 {
@@ -7,6 +8,13 @@ namespace Testing4
   
      public class tstStock
     {
+        //good test data
+        //create some test data to pass to the method 
+        string ClothesColour = "red";
+        string ClothesDescription = "LargeShirt";
+        string DateAdded = DateTime.Now.Date.ToString();
+        string price = "1";
+        
         public object TestData { get; private set; }
 
         [TestMethod]
@@ -234,6 +242,148 @@ namespace Testing4
             Assert.IsTrue(OK);
         }
 
+        [TestMethod]
+        public void ValidMethodOk()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //strinf varibale to store any error message
+            String Error = "";
+            //invoke the method
+            Error = AnStock.Valid(   ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct 
+            Assert.AreEqual(Error, "");
+        }
+        [TestMethod]
+        public void ClothesColourMinLessOne()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string ClothesColour = ""; //this should trigger an error
+             //invoke the method 
+            Error = AnStock.Valid( ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+
+        }
+        [TestMethod]
+        public void ClothesColourMin()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string ClothesColour = "f";//this should be ok
+                                       //invoke the method 
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+
+
+
+        }
+        [TestMethod]
+        public void ClothesColourMinPlusOne()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string ClothesColour = "ff"; // this should be ok
+                //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ClothesColourMaxLessOne()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string ClothesColour = "fffff"; // this should be ok
+                                         //invoke the method 
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ClothesColourMax()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string ClothesColour = "ffffff"; //this should be ok
+            // invoke the method
+                                         
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ClothesColourMid()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string ClothesColour = "fff"; // this should be ok
+                // invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ClothesColourMaxPlusOne()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+        //create some test data to pass to the method
+        string ClothesColour = "fffffffff"; // this should fail
+                 // invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ClothesColourExtremeMax()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string ClothesColour = "";
+            ClothesColour = ClothesColour.PadRight(500, "f"); //this should fail
+            //invoke the method
+                                                
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -247,6 +397,5 @@ namespace Testing4
 
 
     }
-}
 
 
