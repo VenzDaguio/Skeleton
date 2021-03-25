@@ -65,6 +65,57 @@ namespace tstCustomerCollection
             Assert.AreEqual(AllCustomers.Count, TestList.Count);
 
         }
-        
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsCustomerCollection AllCustomers = new clsCustomeCollestionr();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+
+            TestItem.Over18 = true;
+            TestItem.CustomerID = 1;
+            TestItem.CustomerPayment = "123a";
+            TestItem.CustomerAddress = "Western Road";
+            TestItem.SignUpDate = DateTime.Now.Date;
+            TestItem.DateOfBirth = DateTime.Now.Date;
+
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerID = PrimaryKey;
+
+            AllCustomers.ThisCustomer.find(PrimaryKey);
+            
+            //test to see that the result is correct
+            Assert.AreNotEqual(AllCustomers.ThisCustomer, TestItem);
+        }
+        public void UpdateMethodOK()
+        {
+            clsCustomerCollection AllCustomer = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+
+            Int32 PrimaryKey = 0;
+            TestItem.Over18 = true;
+            TestItem.CustomerPayment = "123a";
+            TestItem.CustomerAddress = "Western Road";
+            TestItem.SignUpDate = DateTime.Now.Date;
+            TestItem.DateOfBirth = DateTime.Now.Date;
+
+            AllCustomer.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomer.Add();
+            TestItem.CustomerID = PrimaryKey;
+
+            TestItem.Over18 = false;
+            TestItem.CustomerPayment = "123a";
+            TestItem.CustomerAddress = "Western Road";
+            TestItem.SignUpDate = DateTime.Now.Date;
+            TestItem.DateOfBirth = DateTime.Now.Date;
+
+            AllCustomer.ThisCustomer = TestItem;
+            AllCustomer.Update();
+            AllCustomer.ThisCustomer.Find(PrimaryKey);
+            Assert.AreEqual(AllCustomer.ThisCustomer, TestItem);
+        }
+
     }
 }
