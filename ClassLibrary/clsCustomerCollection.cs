@@ -6,6 +6,7 @@ namespace ClassLibrary
     public class clsCustomerCollection
     {
         List<clsCustomer> mCustomerList = new List<clsCustomer>();
+        clsCustomer mThisCustomer = new clsCustomer();
 
         public List<clsCustomer> CustomerList
         {
@@ -40,7 +41,7 @@ namespace ClassLibrary
 
             set
             {
-                //
+                mThisCustomer = value;
             }
         }
 
@@ -63,6 +64,40 @@ namespace ClassLibrary
                 mCustomerList.Add(AnCustomer);
                 Index++;
             }
+        }
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerAddress", mThisCustomer.CustomerAddress);
+            DB.AddParameter("@CustomerPayment", mThisCustomer.CustomerPayment);
+            DB.AddParameter("@SignUpDate", mThisCustomer.SignUpDate);
+            DB.AddParameter("@DateOfBirth", mThisCustomer.DateOfBirth);
+            DB.AddParameter("@Over18", mThisCustomer.Over18);
+
+            return DB.Execute("sproc_tblCustomer_Insert");
+        }
+        public void Update()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerAddress", mThisCustomer.CustomerAddress);
+            DB.AddParameter("@CustomerPayment", mThisCustomer.CustomerPayment);
+            DB.AddParameter("@SignUpDate", mThisCustomer.SignUpDate);
+            DB.AddParameter("@DateOfBirth", mThisCustomer.DateOfBirth);
+            DB.AddParameter("@Over18", mThisCustomer.Over18)
+
+
+            DB.Execute("sproc_tblCustomer_Update");
+
+        }
+        public void DisplayCustomer()
+        {
+            clsCustomerCollection CustomerBook = new clsCustomerCollection();
+            CustomerBook.ThisCustomer.Find(CustomerID);
+            txtCustomerAdress.text = CustomerBook.ThisCustomer.CustomerID.ToString();
+            txtCustomerPaymentInfo.text = CustomerBook.ThisCustomer.CustomerPayment();
+            txtSignUpDate.text = CustomerBook.ThisCustomer.SignUpDate.ToString();
+            txtDateOfBirth.text = CustomerBook.ThisCustomer.DateOfBirth.ToString();
+            chkActive.Checked = CustomerBook.ThisCustomer.Over18;
         }
     }
     

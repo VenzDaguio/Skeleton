@@ -32,17 +32,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnCustomer.CustomerPayment = CustomerPayment;
             AnCustomer.SignUpDate = Convert.ToDateTime(SignUpDate);
             AnCustomer.DateOfBirth = Convert.ToDateTime(DateOfBirth);
-            //store the customer in the session object
-            Session["AnCustomer"] = AnCustomer;
-            //redirect to the viewer page
-            Response.Write("AddressViewer.aspx");
+            AnCustomer.Over18 = chkOver18.Checked;
+            clsCustomerCollection CustomerList = new clsCustomerCollection();
+            
+        }
+        if (lblCustomerID = -1)
+        {
+            CustomerList.ThisCustomer = AnCustomer;
+            CustomerList.Add();
         }
         else
         {
-            //display the error message
-            lblError.Text = Error;
+            CustomerList.ThisCustomer.Find(CustomerID);
+            CustomerList.ThisCustomer = AnCustomer;
+            CustomerList.Update();
         }
-        
+        Response.Redirect("CustomerList.aspx");
+        {
+            else
+        }
 
 
     }
