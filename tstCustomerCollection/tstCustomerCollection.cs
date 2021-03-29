@@ -75,7 +75,7 @@ namespace tstCustomerCollection
 
             TestItem.Over18 = true;
             TestItem.CustomerID = 1;
-            TestItem.CustomerPayment = "123a";
+            TestItem.CustomerPayment = "Siren Ocean etc.";
             TestItem.CustomerAddress = "Western Road";
             TestItem.SignUpDate = DateTime.Now.Date;
             TestItem.DateOfBirth = DateTime.Now.Date;
@@ -84,8 +84,8 @@ namespace tstCustomerCollection
             PrimaryKey = AllCustomers.Add();
             TestItem.CustomerID = PrimaryKey;
 
-            AllCustomers.ThisCustomer.find(PrimaryKey);
-            
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+
             //test to see that the result is correct
             Assert.AreNotEqual(AllCustomers.ThisCustomer, TestItem);
         }
@@ -96,7 +96,7 @@ namespace tstCustomerCollection
 
             Int32 PrimaryKey = 0;
             TestItem.Over18 = true;
-            TestItem.CustomerPayment = "123a";
+            TestItem.CustomerPayment = "Siren Ocean etc.";
             TestItem.CustomerAddress = "Western Road";
             TestItem.SignUpDate = DateTime.Now.Date;
             TestItem.DateOfBirth = DateTime.Now.Date;
@@ -106,7 +106,7 @@ namespace tstCustomerCollection
             TestItem.CustomerID = PrimaryKey;
 
             TestItem.Over18 = false;
-            TestItem.CustomerPayment = "123a";
+            TestItem.CustomerPayment = "Siren Ocean etc";
             TestItem.CustomerAddress = "Western Road";
             TestItem.SignUpDate = DateTime.Now.Date;
             TestItem.DateOfBirth = DateTime.Now.Date;
@@ -115,6 +115,52 @@ namespace tstCustomerCollection
             AllCustomer.Update();
             AllCustomer.ThisCustomer.Find(PrimaryKey);
             Assert.AreEqual(AllCustomer.ThisCustomer, TestItem);
+        }
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+
+            Int32 PrimaryKEt = 0;
+            TestItem.Over18 = true;
+            TestItem.CustomerID = 1;
+            TestItem.CustomerPayment = "Siren Ocean etc.";
+            TestItem.CustomerAddress = "Western Road";
+            TestItem.SignUpDate = DateTime.Now.Date;
+            TestItem.DateOfBirth = DateTime.Now.Date;
+
+            AllCustomers.ThisCustomer = TestItem;
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerID = PrimaryKey;
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            AllCustomers.Delete();
+
+            Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
+        [TestMethod]
+        public void RepostByCustomerAddressMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            Boolead OK = true;
+            FilteredCustomers.ReportByCustomerAddress("yyy yyy");
+            if(Filteredcustomers.Count == 2)
+            {
+                if(FilteredCustomers.CustomerList[0].CustomerID != 36)
+                {
+                    OK = false;
+                }
+                if(FilteredCustomers.CustomerList[1].CustomerID != 37)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
         }
 
     }

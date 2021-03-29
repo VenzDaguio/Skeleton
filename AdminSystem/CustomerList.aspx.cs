@@ -13,10 +13,7 @@ public partial class _Default : System.Web.UI.Page
     {
         if (IsPostBack == false)
         {
-            if(CustomerID != 1)
-            {
-                DisplayCustomer();
-            }
+            DisplayCustomers();
         }
     }
     void DisplayCustomers()
@@ -25,7 +22,7 @@ public partial class _Default : System.Web.UI.Page
         lstCustomers.DataSource = Customers.CustomerList;
 
         lstCustomers.DataValueField = "CustomerID";
-        lstCustomers.DataTextField = "CustomerAddress";
+        lstCustomers.DataTextField = "PostCode";
         lstCustomers.DataBind();
     }
     protected void btnAdd_Click(object sender, EventArgs e)
@@ -46,5 +43,38 @@ public partial class _Default : System.Web.UI.Page
         {
             lblError.Text = "Please select a record to delete from the list";
         }
+    }
+    protected void btnDelete_Click(object sender, EventArgs e)
+    {
+        Int32 CustomerID;
+        if(lstCustomerList.SelectedIndex != -1)
+        {
+            CustomerID = Convert.ToInt32(lstCustomerList.SelectedValue);
+            Session["CustomerID"] = CustomerID;
+            Response.Redirect("DeleteCustomer.aspx");
+        }
+        else
+        {
+            lblError.Text = "Please selecte a record to delete from the list";
+        }
+    }
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        clsCustomerCollection Customers = new clsCustomerCollection();
+        Customers.ReportByCustomerAddress(txtFilter.Text);
+        lstCustomerList.DataSource = Customers.CustomerList;
+        lstCustomerList.DataValuefield = "CustomerID";
+        lstCustomerList.DataTextfield = "PostCode";
+        lstCustomerList.DataBind();
+    }
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        clsCustomerCollection Customers = new clsCustomerCollection();
+        Customers.ReportByCustomerAddress("");
+        txtFilter.Text = "";
+        lstCustomerList.DataSource = Customers.CustomerList;
+        lstCustomerList.DataValueField = "CustomerID";
+        lstCustomerList.DataTextField = "Customer Address";
+        lstCustomerList.DataBind();
     }
 }
