@@ -24,6 +24,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         string CustomerPayment = txtPayment.Text;
         string SignUpDate = txtSignUp.Text;
         string DateOfBirth = txtSignUp.Text;
+        string Error = "";
         //validate the data
         Error = AnCustomer.Valid(CustomerAddress, CustomerPayment, SignUpDate, DateOfBirth);
         if (Error == "")
@@ -34,24 +35,22 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnCustomer.DateOfBirth = Convert.ToDateTime(DateOfBirth);
             AnCustomer.Over18 = chkOver18.Checked;
             clsCustomerCollection CustomerList = new clsCustomerCollection();
-            
-        }
-        if (lblCustomerID = -1)
-        {
-            CustomerList.ThisCustomer = AnCustomer;
-            CustomerList.Add();
-        }
-        else
-        {
-            CustomerList.ThisCustomer.Find(CustomerID);
-            CustomerList.ThisCustomer = AnCustomer;
-            CustomerList.Update();
-        }
-        Response.Redirect("CustomerList.aspx");
-        {
-            else
-        }
 
+        }
+            if (lblCustomerID = -1)
+            {
+                CustomerList.ThisCustomer = AnCustomer;
+                CustomerList.Add();
+            }
+            else
+            {
+                CustomerList.ThisCustomer.Find(CustomerID);
+                CustomerList.ThisCustomer = AnCustomer;
+                CustomerList.Update();
+            }
+            Response.Redirect("CustomerList.aspx");
+        }
+       else{
 
     }
     protected void btnFind_Click(object sender, EventArgs e)

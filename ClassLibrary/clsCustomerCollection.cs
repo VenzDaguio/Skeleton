@@ -47,23 +47,10 @@ namespace ClassLibrary
 
         public clsCustomerCollection()
         {
-            Int32 Index = 0;
-            Int32 RecordCount = 0;
             clsDataConnection DB = new clsDataConnection();
-            DB.Execute("sproc_tblCustomer_SelectAll");
-            RecordCount = DB.Count;
-            while (Index < RecordCount)
-            {
-                clsCustomer AnCustomer = new clsCustomer();
-                AnCustomer.Over18 = Convert.ToBoolean(DB.DataTable.Rows[Index]["Over18"]);
-                AnCustomer.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
-                AnCustomer.CustomerPayment = Convert.ToString(DB.DataTable.Rows[Index]["CustomerPaymentInfo"]);
-                AnCustomer.CustomerAddress = Convert.ToString(DB.DataTable.Rows[Index]["CustomerAddress"]);
-                AnCustomer.SignUpDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["SignUpDate"]);
-                AnCustomer.DateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateOfBirth"]);
-                mCustomerList.Add(AnCustomer);
-                Index++;
-            }
+            DB.Execute("sproc_tblCustomer_SelecteAll");
+            PopulateArray(DB);
+
         }
         public int Add()
         {
@@ -83,7 +70,7 @@ namespace ClassLibrary
             DB.AddParameter("@CustomerPayment", mThisCustomer.CustomerPayment);
             DB.AddParameter("@SignUpDate", mThisCustomer.SignUpDate);
             DB.AddParameter("@DateOfBirth", mThisCustomer.DateOfBirth);
-            DB.AddParameter("@Over18", mThisCustomer.Over18)
+            DB.AddParameter("@Over18", mThisCustomer.Over18);
 
 
             DB.Execute("sproc_tblCustomer_Update");
@@ -98,6 +85,39 @@ namespace ClassLibrary
             txtSignUpDate.text = CustomerBook.ThisCustomer.SignUpDate.ToString();
             txtDateOfBirth.text = CustomerBook.ThisCustomer.DateOfBirth.ToString();
             chkActive.Checked = CustomerBook.ThisCustomer.Over18;
+        }
+        public void Delete()
+        {
+            clsCustomerCollection DB = new clsCustomerCollection();
+            DB.AddParameter("@CustomerID", mThisCustomer.CustomerID);
+        }
+        public void ReportByCustomerAddress(string CustomerAddress)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("CustomerAddress", CustomerAddress);
+            DB.Execute("sproc_tblCustomer_FilterByCustomerAddress");
+            PopulateArray(DB);
+        }
+        void PopulateArray(clsCustomerCollection DB)
+        {
+            Int32 Index = 0;
+            Int32 RecordCount;
+            RecordCount = DB.Count;
+
+            mCustomerList = new List<clsCustomer>();
+            while (Index < RecordCount)
+            {
+                clsCustomer AnCustomer = new clsCustomer();
+                AnCustomer.Over18 = Convert.ToBoolean(DB.DataTable.Rows[Index]["Over18"]);
+                AnCustomer.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
+                AnCustomer.CustomerPayment = Convert.ToString(DB.DataTable.Rows[Index]["CustomerPaymentInfo"]);
+                AnCustomer.CustomerAddress = Convert.ToString(DB.DataTable.Rows[Index]["CustomerAddress"]);
+                AnCustomer.SignUpDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["SignUpDate"]);
+                AnCustomer.DateOfBirth = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateOfBirth"]);
+
+                mCustomerList.Add(AnCustomer);
+                Index++;
+            }
         }
     }
     
