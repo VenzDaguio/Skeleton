@@ -5,8 +5,8 @@ using ClassLibrary;
 namespace Testing4
 {
     [TestClass]
-  
-     public class tstStock
+
+    public class tstStock
     {
         //good test data
         //create some test data to pass to the method 
@@ -14,7 +14,7 @@ namespace Testing4
         string ClothesDescription = "LargeShirt";
         string DateAdded = DateTime.Now.Date.ToString();
         string price = "1";
-        
+
         public object TestData { get; private set; }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace Testing4
         public void DateAddedPropertyOK()
         {
             //create an instance of the class we want to create
-           clsStock AnStock = new clsStock();
+            clsStock AnStock = new clsStock();
             //create some test data to assign to the property
             DateTime TestData = DateTime.Now.Date;
             // assign the data to the property
@@ -126,7 +126,7 @@ namespace Testing4
             //invoke the method
             Found = AnStock.Find(ClothesNo);
             //check the Clothes no
-            if (AnStock. ClothesNo != 12)
+            if (AnStock.ClothesNo != 12)
             {
                 OK = false;
             }
@@ -250,7 +250,7 @@ namespace Testing4
             //strinf varibale to store any error message
             String Error = "";
             //invoke the method
-            Error = AnStock.Valid(   ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
             //test to see that the result is correct 
             Assert.AreEqual(Error, "");
         }
@@ -263,8 +263,8 @@ namespace Testing4
             String Error = "";
             //create some test data to pass to the method
             string ClothesColour = ""; //this should trigger an error
-             //invoke the method 
-            Error = AnStock.Valid( ClothesDescription, ClothesColour, DateAdded, Price);
+                                       //invoke the method 
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
 
@@ -295,7 +295,7 @@ namespace Testing4
             String Error = "";
             //create some test data to pass to the method
             string ClothesColour = "ff"; // this should be ok
-                //invoke the method
+                                         //invoke the method
             Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
@@ -309,7 +309,7 @@ namespace Testing4
             String Error = "";
             //create some test data to pass to the method
             string ClothesColour = "fffff"; // this should be ok
-                                         //invoke the method 
+                                            //invoke the method 
             Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
@@ -323,8 +323,8 @@ namespace Testing4
             String Error = "";
             //create some test data to pass to the method
             string ClothesColour = "ffffff"; //this should be ok
-            // invoke the method
-                                         
+                                             // invoke the method
+
             Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
@@ -338,7 +338,7 @@ namespace Testing4
             String Error = "";
             //create some test data to pass to the method
             string ClothesColour = "fff"; // this should be ok
-                // invoke the method
+                                          // invoke the method
             Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
@@ -350,9 +350,9 @@ namespace Testing4
             clsStock AnStock = new clsStock();
             //string variable to store any error message
             String Error = "";
-        //create some test data to pass to the method
-        string ClothesColour = "fffffffff"; // this should fail
-                 // invoke the method
+            //create some test data to pass to the method
+            string ClothesColour = "fffffffff"; // this should fail
+                                                // invoke the method
             Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
@@ -367,12 +367,239 @@ namespace Testing4
             //create some test data to pass to the method
             string ClothesColour = "";
             ClothesColour = ClothesColour.PadRight(500, "f"); //this should fail
-            //invoke the method
-                                                
+                                                              //invoke the method
+
             Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
+        [TestMethod]
+        public void DateAddedExtremeMin()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the test datetotodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(-100);
+            //convert the date variable to a string Variable
+            String DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateAddedMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the test datetotodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is less 100 years
+            TestDate = TestDate.AddYears(-1);
+            //convert the date variable to a string Variable
+            String DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateAddedMin()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the test datetotodays date
+            TestDate = DateTime.Now.Date;
+
+            //convert the date variable to a string Variable
+            String DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+        [TestMethod]
+        public void DateAddedMinPlusOne()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the test datetotodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 1 day
+            TestDate = TestDate.AddDays(1);
+            //convert the date variable to a string Variable
+            String DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateAddedExtremeMax()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create a variable to store the test date data
+            DateTime TestDate;
+            //set the test datetotodays date
+            TestDate = DateTime.Now.Date;
+            //change the date to whatever the date is plus 100 years
+            TestDate = TestDate.AddYears(100);
+            //convert the date variable to a string Variable
+            String DateAdded = TestDate.ToString();
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void DateInvalidData()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //create some test data to pass to the method
+            string ClothesDescription = "large shirt";
+            string ClothesColour = "red";
+            string DateAdded = "16/09/2021";
+            string Price = "1";
+
+            //set the DateAdded to a non date value
+            string DateAdded = "this is not a date";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ClothesDescriptionMinLessOne()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            string ClothesDescription = "";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ClothesDescriptionMin()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string ClothesDescription = "f";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ClothesDescriptionMinPlusOne()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string ClothesDescription = "ff";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ClothesDescriptionMaxLessOne()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string ClothesDescription = "ffffffff";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ClothesDescriptionMax()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string ClothesDescription = "fffffffff";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ClothesDescriptionMaxPlusOne()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            string ClothesDescription = "ffffffffff";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void ClothesDescriptionMid()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            string ClothesDescription = "ffff";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+
+
+
+
+
+
+
+
+
 
 
 
@@ -397,5 +624,7 @@ namespace Testing4
 
 
     }
+    }
+}
 
 
