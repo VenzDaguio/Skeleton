@@ -149,15 +149,17 @@ namespace ClassLibrary
                 return false;
             }
         }
-            public string Valid( string ClothesColour string DateAdded string price)
+        public string Valid(string ClothesColour, string DateAdded, string price , string ClothesDescription)
         {
             //create a string variable to store the error
             string Error = "";
-            //if the ClothesNo is blank
+            //create a temporary varibale to store values
+            DateTime DateTemp;
+            //if the ClothesColour is blank
             if (ClothesColour.Length == 0)
             {
                 //record the error
-                Error = Error + "The clothes no may not be blank : ";
+                Error = Error + "The clothesColour may not be blank : ";
 
             }
             //if ClothesColour is greater than 9characters
@@ -166,13 +168,45 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "ClothesColour must be lass than 9 characters : ";
             }
-            //return any error messages
-            return Error;
+            try
+            {
+                //copy the DateAdded value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(DateAdded);
+                if(DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past:";
+                }
+                //check to see if the date is greater than todays date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future :";
+                }
 
+
+            }
+            catch
+            {
+                //record the error 
+                Error = Error + "the date was not a valid date:";
+
+            }
+            return Error;
+            
+            
+
+            
+            
+            
+            
         }
-             
             
             
-        
+
+
+
+
+
     }
 }
