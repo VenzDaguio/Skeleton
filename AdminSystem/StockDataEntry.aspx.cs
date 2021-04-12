@@ -19,7 +19,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create an instance clsStock
         clsStock AnStock = new clsStock();
-        // capture the ClothesNo
+        // capture the ClothesDescription
         AnStock.ClothesDescription = txtClothesDescription.Text;
         // store the Stock in the session object
         Session["AnStock"] = AnStock;
@@ -34,24 +34,38 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //create an instance of the stock class
         clsStock AnStock = new clsStock();
-        //variable to store the primary key
-        Int32 ClothesNo;
-        //variable to store the result to find operation
-        Boolean Found = false;
-        //get the primary key entered by the user
-        ClothesNo = Convert.ToInt32(txtClothesNo.Text);
-        //find the record   
-        Found = AnStock.Find(ClothesNo);
-        //if found
-        if (Found == true)
+        //capture the clothes colour
+        string ClothesColour = txtClothesColour.Text;
+        //capture the ClothesDescription
+        string ClothesDescription = txtClothesDescription.Text;
+        //capture the price
+        string Price = txtPrice.Text;
+        //capture the date added
+        string DateAdded = txtDateAdded.Text;
+        string Error = "";
+        //validate the error
+        Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+
+
+        if (Error == "")
         {
-            //display the values of the properties in the form
-            txtClothesNo.Text = AnStock.ClothesNo.ToString();
-            txtDateAdded.Text = AnStock.DateAdded.ToString();
-            txtPrice.Text = AnStock.Price.ToString();
-            txtClothesDescription.Text = AnStock.ClothesDescription;
-            txtClothesColour.Text = AnStock.ClothesColour.ToString();
+            //capture clothes Description
+            AnStock.ClothesDescription = ClothesDescription;
+            //capture clothes colour
+            AnStock.ClothesColour = ClothesColour;
             
+            //capture dateadded
+            AnStock.DateAdded = Convert.ToDateTime(DateAdded);
+            Session["AnStock"] = AnStock;
+            //redirect to viewer page
+            Response.Write("StockViewer.aspx");
+            
+
+        }
+        else
+        {
+            //display the error message
+            iblError.Text = Error;
         }
 }
 
