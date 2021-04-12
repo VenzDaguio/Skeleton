@@ -592,6 +592,104 @@ namespace Testing4
             Assert.AreNotEqual(Error, "");
         }
 
+        [TestMethod]
+        public void PriceMinLessOne()
+        {
+            //create an instance of the class we want to create
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            string Street = "";
+            //invoke the method
+            Error = AnAddress.Valid(ClothesDescription,ClothesColour,DateAdded,Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void PriceMin()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            String Price = "f";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void PriceMinPlusOne()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Price = "ff";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void PriceMaxLessOne()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Price = "ffffffff";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void PriceMax()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should pass
+            string Price = "fffffffff";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void PricePlusOne()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            string Price = "ffffffffff";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
+        [TestMethod]
+        public void PriceMid()
+        {
+            //create an instance of the class we want to create 
+            clsStock AnStock = new clsStock();
+            //string variable to store any error message
+            String Error = "";
+            //this should fail
+            string Price = "ffff";
+            //invoke the method
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            //test to see that the result is correct
+            Assert.AreNotEqual(Error, "");
+        }
 
 
 
@@ -622,9 +720,8 @@ namespace Testing4
 
 
 
-
-    }
     }
 }
+
 
 
