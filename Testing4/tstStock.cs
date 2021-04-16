@@ -296,7 +296,7 @@ namespace Testing4
             //create some test data to pass to the method
             string ClothesColour = "ff"; // this should be ok
                                          //invoke the method
-            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -503,7 +503,7 @@ namespace Testing4
             //this should fail
             string ClothesDescription = "";
             //invoke the method
-            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -517,7 +517,7 @@ namespace Testing4
             //this should pass
             string ClothesDescription = "f";
             //invoke the method
-            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -531,7 +531,7 @@ namespace Testing4
             //this should pass
             string ClothesDescription = "ff";
             //invoke the method
-            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -545,7 +545,7 @@ namespace Testing4
             //this should pass
             string ClothesDescription = "ffffffff";
             //invoke the method
-            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -559,7 +559,7 @@ namespace Testing4
             //this should pass
             string ClothesDescription = "fffffffff";
             //invoke the method
-            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -573,7 +573,7 @@ namespace Testing4
             //this should fail
             string ClothesDescription = "ffffffffff";
             //invoke the method
-            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -587,7 +587,7 @@ namespace Testing4
             //this should fail
             string ClothesDescription = "ffff";
             //invoke the method
-            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -600,9 +600,9 @@ namespace Testing4
             //string variable to store any error message
             String Error = "";
             //this should fail
-            string Street = "";
+            string Price = "";
             //invoke the method
-            Error = AnAddress.Valid(ClothesDescription,ClothesColour,DateAdded,Price);
+            Error = AnStock.Valid(ClothesDescription,ClothesColour,DateAdded,Price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -616,7 +616,7 @@ namespace Testing4
             //this should pass
             String Price = "f";
             //invoke the method
-            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -630,7 +630,7 @@ namespace Testing4
             //this should pass
             string Price = "ff";
             //invoke the method
-            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -644,7 +644,7 @@ namespace Testing4
             //this should pass
             string Price = "ffffffff";
             //invoke the method
-            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -658,7 +658,7 @@ namespace Testing4
             //this should pass
             string Price = "fffffffff";
             //invoke the method
-            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
@@ -672,7 +672,7 @@ namespace Testing4
             //this should fail
             string Price = "ffffffffff";
             //invoke the method
-            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+            Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, price);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
