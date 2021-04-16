@@ -149,7 +149,7 @@ namespace ClassLibrary
                 return false;
             }
         }
-        public string Valid(string ClothesColour, string DateAdded, string price , string ClothesDescription)
+        public string Valid(string ClothesColour, string DateAdded, string Price , string ClothesDescription)
         {
             //create a string variable to store the error
             string Error = "";
