@@ -395,5 +395,16 @@ namespace Testing1
             Error = AnOrder.Valid(Description, DateReceived);
             Assert.AreNotEqual(Error, "");
         }
+
+        [TestMethod]
+
+        public void DataReceivedInvalidData()
+        {
+            clsOrder AnOrder = new clsOrder();
+            String Error = "";
+            string DateReceived = "this is not a date!";
+            Error = AnOrder.Valid(Description, DateReceived);
+            Assert.AreNotEqual(Error, "");
+        }
     }
 }

@@ -87,7 +87,7 @@ namespace ClassLibrary
         {
             //set the private data members to the test data value
             mSalary = 1000;
-            mStaffID = "123";
+           // mStaffID = "123";
             mStaffPosition = "Member";
             mFirstName= "Kiana";
             mDateOfBirth = Convert.ToDateTime("26/05/2015");

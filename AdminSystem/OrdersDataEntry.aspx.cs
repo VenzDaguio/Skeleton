@@ -39,11 +39,32 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
         //capture the order id
-        AnOrder.Description = txtDescription.Text;
-        //store the order in the session object
-        Session["AnOrder"] = AnOrder;
-        // navigate to the viewer page
-        Response.Redirect("OrdersViewer.aspx");
+        string OrderId = txtOrderID.Text;
+        string CustomerId = txtCustomerID.Text;
+        string DateReceived = txtDateReceived.Text;
+        string OrderPrice = txtOrderPrice.Text;
+        string Description = txtDescription.Text;
+        string Quantity = txtQuantity.Text;
+        string Error = "";
+        Error = AnOrder.Valid(Description, DateReceived);
+        if (Error == "")
+        {
+            AnOrder.OrderId = Convert.ToInt32(OrderId);
+            AnOrder.CustomerId = Convert.ToInt32(CustomerId);
+            AnOrder.DateReceived = Convert.ToDateTime(DateReceived);
+            AnOrder.OrderPrice = Convert.ToInt32(OrderPrice);
+            AnOrder.Description = Description;
+            AnOrder.Quantity = Convert.ToInt32(Quantity);
+            AnOrder.Delivered = chkDelivered.Checked;
+            clsOrderCollection OrderList = new clsOrderCollection();
+            OrderList.ThisOrder = AnOrder;
+            OrderList.Add();
+            Response.Redirect("OrdersList.aspx");
+        }
+        else
+        {
+            lblError.Text = Error;
+        }
     }
 
 
