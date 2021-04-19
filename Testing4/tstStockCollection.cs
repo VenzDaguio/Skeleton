@@ -58,23 +58,38 @@ namespace Testing4
             Assert.AreEqual(AllStocks.Count, SomeCount);
 
         }
-         [TestMethod]
-         public void ListAndCountOK()
+        [TestMethod]
+        public void ListAndCountOK()
         {
             clsStockCollection AllStocks = new clsStockCollection();
             List<clsStock> TestList = new List<clsStock>();
             clsStock TestItem = new clsStock();
-            
+
             TestItem.ClothesColour = "red";
             TestItem.ClothesDescription = "LargeShirt";
             TestItem.DateAdded = DateTime.Now.Date;
             TestItem.Price = 1;
+            TestItem.Available = true;
+            TestItem.ClothesNo = 1;
             TestList.Add(TestItem);
             AllStocks.StockList = TestList;
             Assert.AreEqual(AllStocks.Count, TestList.Count);
         }
+        [TestMethod]
+        public void TwoRecordsPresent()
+        {
+            clsStockCollection AllStocks = new clsStockCollection();
+            Assert.AreEqual(AllStocks.Count, 2);
+        }
         
-            
+
+
+
+
+
+
+
+
 
 
 
