@@ -57,9 +57,21 @@ public partial class _1_DataEntry : System.Web.UI.Page
             AnOrder.Quantity = Convert.ToInt32(Quantity);
             AnOrder.Delivered = chkDelivered.Checked;
             clsOrderCollection OrderList = new clsOrderCollection();
+
+            if (Convert.ToInt32(OrderId) == -1)
+            {
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Add();
+            } 
+
+        else
+        {
+            OrderList.ThisOrder.Find(Convert.ToInt32(OrderId));
             OrderList.ThisOrder = AnOrder;
-            OrderList.Add();
-            Response.Redirect("OrdersList.aspx");
+            OrderList.Update();
+        }
+
+            Response.Redirect("OrderList.aspx");
         }
         else
         {
