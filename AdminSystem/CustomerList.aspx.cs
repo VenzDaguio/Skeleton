@@ -19,11 +19,11 @@ public partial class _Default : System.Web.UI.Page
     void DisplayCustomers()
     {
         clsCustomerCollection Customers = new clsCustomerCollection();
-        lstCustomers.DataSource = Customers.CustomerList;
+        //lstCustomers.DataSource = Customers.CustomerList;
 
-        lstCustomers.DataValueField = "CustomerID";
-        lstCustomers.DataTextField = "PostCode";
-        lstCustomers.DataBind();
+        //lstCustomers.DataValueField = "CustomerID";
+        //lstCustomers.DataTextField = "PostCode";
+        //lstCustomers.DataBind();
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
