@@ -81,7 +81,24 @@ namespace Testing4
             clsStockCollection AllStocks = new clsStockCollection();
             Assert.AreEqual(AllStocks.Count, 2);
         }
-        
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            clsStockCollection AllStocks = new clsStockCollection();
+            clsStock TestItem = new clsStock();
+            Int32 PrimaryKey = 0;
+            TestItem.ClothesColour = "red";
+            TestItem.ClothesDescription = "LargeShirt";
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.Price = 1;
+            TestItem.Available = true;
+            TestItem.ClothesNo = 1;
+            AllStocks.ThisStock = TestItem;
+            PrimaryKey = AllStocks.Add();
+            AllStocks.ThisStock.Find(PrimaryKey);
+            Assert.AreEqual(AllStocks.ThisStock, TestItem);
+
+        }
 
 
 
