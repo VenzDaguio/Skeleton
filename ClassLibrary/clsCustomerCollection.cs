@@ -90,6 +90,7 @@ namespace ClassLibrary
         {
             clsCustomerCollection DB = new clsCustomerCollection();
             DB.AddParameter("@CustomerID", mThisCustomer.CustomerID);
+            DB.Execute("sproc_tblCustomer_Delete");
         }
         public void ReportByCustomerAddress(string CustomerAddress)
         {
