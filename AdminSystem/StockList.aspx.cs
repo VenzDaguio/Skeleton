@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ClassLibrary;
 
-public partial class _Default : System.Web.UI.Page
+public partial class _1_List : System.Web.UI.Page
 {
     //this function handles the load event 
     protected void Page_Load(object sender, EventArgs e)
@@ -33,6 +33,11 @@ public partial class _Default : System.Web.UI.Page
         lstStocks.DataTextField = "ClothesDescription";
         lstStocks.DataBind();
 
+    }
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        Session["ClotheNo"] = -1;
+        Response.Redirect("AnClothe.aspx");
     }
 
 }

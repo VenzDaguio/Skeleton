@@ -43,6 +43,18 @@ namespace ClassLibrary
                 mThisStock = value;
             }
         }
+        public int Add()
+        {
+            clsDataConnection DB = new clsDataConnection();
+            
+            DB.AddParameter("@Price", mThisStock.Price);
+            DB.AddParameter("@ClothesColour", mThisStock.ClothesColour);
+            DB.AddParameter("@ClothesDescription", mThisStock.ClothesDescription);
+            DB.AddParameter("@Available", mThisStock.Available);
+            DB.AddParameter("@DateAdded", mThisStock.DateAdded);
+          
+            return DB.Execute("sproc_tblClothes_Insert");
+        }
     }
 }
    

@@ -12,25 +12,47 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        //create an instance of the stock class
+        clsStock AnStock = new clsStock();
+        //capture the clothes colour
+        string ClothesColour = txtClothesColour.Text;
+        //capture the ClothesDescription
+        string ClothesDescription = txtClothesDescription.Text;
+        //capture the price
+        string Price = txtPrice.Text;
+        //capture the date added
+        string DateAdded = txtDateAdded.Text;
+        string Error = "";
+        //validate the error
+        Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
 
+
+        if (Error == "")
+        {
+            //capture clothes Description
+            AnStock.ClothesDescription = ClothesDescription;
+            //capture clothes colour
+            AnStock.ClothesColour = ClothesColour;
+
+            //capture dateadded
+            AnStock.DateAdded = Convert.ToDateTime(DateAdded);
+            Session["AnStock"] = AnStock;
+            //redirect to viewer page
+            Response.Write("StockViewer.aspx");
+
+
+        }
+        else
+        {
+            //display the error message
+            iblError.Text = Error;
+        }
     }
+
+
+    
 
     protected void btnOK_Click(object sender, EventArgs e)
-    {
-        //create an instance clsStock
-        clsStock AnStock = new clsStock();
-        // capture the ClothesDescription
-        AnStock.ClothesDescription = txtClothesDescription.Text;
-        // store the Stock in the session object
-        Session["AnStock"] = AnStock;
-        //Navigate to the viewer page 
-        Response.Redirect("StockViewer.aspx");
-
-
-
-    }
-
-    protected void btnOK_Click1(object sender, EventArgs e)
     {
         //create an instance of the stock class
         clsStock AnStock = new clsStock();
@@ -56,9 +78,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
             
             //capture dateadded
             AnStock.DateAdded = Convert.ToDateTime(DateAdded);
-            Session["AnStock"] = AnStock;
+            AnStock.Available = chkAvailable.Checked;
+            clsStockCollection StockList = new clsStockCollection();
+            StockList.ThisStock = AnStock;
+            StockList.Add();
+            
             //redirect to viewer page
-            Response.Write("StockViewer.aspx");
+            Response.Redirect("StockViewer.aspx");
             
 
         }
