@@ -129,7 +129,7 @@ namespace ClassLibrary
             if (DB.Count == 1)
             {
                 //copy the data from the database to the private data members
-                mClothesNo = Convert.ToInt32(DB.DataTable.Rows[0]["ClothesNo"]);
+                mStock = Convert.ToInt32(DB.DataTable.Rows[0]["ClothesNo"]);
                 mClothesDescription = Convert.ToString(DB.DataTable.Rows[0]["ClothesDescription"]);
                 mClothesColour = Convert.ToString(DB.DataTable.Rows[0]["ClothesColour"]);
                 mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
