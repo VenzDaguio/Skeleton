@@ -8,12 +8,21 @@ using ClassLibrary;
 
 public partial class _Default : System.Web.UI.Page
 {
-
+    Int32 CustomerID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        CustomerID = Convert.ToInt32(Session["CustomerID"]);
         if (IsPostBack == false)
         {
             DisplayCustomers();
+        }
+        void DisplayCustomers()
+        {
+            Class_Library.clsCustomerCollection Customers = new Class_Library.clsCustomerCollection();
+            lstCustomers.DataSource = Customers.CustomerList;
+            lstCustomers.DataValueField = "CustomerID";
+            lstCustomers.DataTextField = "PostCode";
+            lstCustomer.DataBind();
         }
     }
     void DisplayCustomers()
@@ -22,7 +31,7 @@ public partial class _Default : System.Web.UI.Page
         //lstCustomers.DataSource = Customers.CustomerList;
 
         //lstCustomers.DataValueField = "CustomerID";
-        //lstCustomers.DataTextField = "PostCode";
+        //lstCustomers.DataTextField = "CustomerAddress";
         //lstCustomers.DataBind();
     }
     protected void btnAdd_Click(object sender, EventArgs e)
@@ -33,7 +42,7 @@ public partial class _Default : System.Web.UI.Page
     protected void btnEdit_Click(object sebder, EventArgs e)
     {
         Int32 CustomerID;
-        if(lstCustomerList.SelectedIndex != - 1)
+        if(lstCustomerList.SelectedIndex != -1)
         {
             CustomerID = Convert.ToInt32(lstCustomerList.SelectedValue);
             Session["CustomerID"] = CustomerID;
