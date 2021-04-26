@@ -56,7 +56,7 @@ namespace ClassLibrary
         {
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@CustomerAddress", mThisCustomer.CustomerAddress);
-            DB.AddParameter("@CustomerPayment", mThisCustomer.CustomerPayment);
+            DB.AddParameter("@CustomerPaymentInfo", mThisCustomer.CustomerPayment);
             DB.AddParameter("@SignUpDate", mThisCustomer.SignUpDate);
             DB.AddParameter("@DateOfBirth", mThisCustomer.DateOfBirth);
             DB.AddParameter("@Over18", mThisCustomer.Over18);
@@ -67,7 +67,7 @@ namespace ClassLibrary
         {
             clsDataConnection DB = new clsDataConnection();
             DB.AddParameter("@CustomerAddress", mThisCustomer.CustomerAddress);
-            DB.AddParameter("@CustomerPayment", mThisCustomer.CustomerPayment);
+            DB.AddParameter("@CustomerPaymentInfo", mThisCustomer.CustomerPayment);
             DB.AddParameter("@SignUpDate", mThisCustomer.SignUpDate);
             DB.AddParameter("@DateOfBirth", mThisCustomer.DateOfBirth);
             DB.AddParameter("@Over18", mThisCustomer.Over18);
@@ -81,7 +81,8 @@ namespace ClassLibrary
             clsCustomerCollection CustomerBook = new clsCustomerCollection();
             CustomerBook.ThisCustomer.Find(CustomerID);
             txtCustomerAdress.text = CustomerBook.ThisCustomer.CustomerID.ToString();
-            txtCustomerPaymentInfo.text = CustomerBook.ThisCustomer.CustomerPayment();
+            txtCustomerPaymentInfo.text = CustomerBook.ThisCustomer.CustomerPayment
+                ();
             txtSignUpDate.text = CustomerBook.ThisCustomer.SignUpDate.ToString();
             txtDateOfBirth.text = CustomerBook.ThisCustomer.DateOfBirth.ToString();
             chkActive.Checked = CustomerBook.ThisCustomer.Over18;
