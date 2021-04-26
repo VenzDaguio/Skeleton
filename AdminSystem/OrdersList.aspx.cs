@@ -16,25 +16,26 @@ public partial class _1_List : System.Web.UI.Page
         {   
             if (OrderId != -1)
             {
-                DisplayOrders();
+                DisplayOrders();  
             }
-            
+                                    
         }
     }
 
     void DisplayOrders()
     {
         clsOrderCollection Orders = new clsOrderCollection();
-        //lstOrders.DataSource = Orders.OrderList;
-        //lstOrders.DataValueField = "OrderId";
-        //lstOrders.DataTextField = "Description";
-        //lstOrders.DataBind();
+        Orders.ThisOrder.Find(OrderId);
+        lstOrderList.DataSource = Orders.OrderList;
+        lstOrderList.DataValueField = "OrderId";
+        lstOrderList.DataTextField = "Description";
+        lstOrderList.DataBind();
     }
 
     protected void btnAdd_Click(object sender, EventArgs e)
     {
         Session["OrderId"] = -1;
-        Response.Redirect("AnOrder.aspx");
+        Response.Redirect("OrdersDataEntry.aspx");
     }
 
     protected void btnEdit_Click(object sender, EventArgs e)
@@ -45,11 +46,11 @@ public partial class _1_List : System.Web.UI.Page
         {
             OrderId = Convert.ToInt32(lstOrderList.SelectedValue);
             Session["OrderId"] = OrderId;
-            Response.Redirect("AnOrder.aspx");
+            Response.Redirect("OrdersDataEntry.aspx");
         }
         else
         {
-            lblError.Text = "Please select a record to delete from the list";
+            lblError.Text = "Please select a record to edit from the list";
         }
     }
 

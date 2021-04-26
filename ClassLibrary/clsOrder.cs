@@ -145,7 +145,7 @@ namespace ClassLibrary
 
         }
 
-        public string Valid(string description, string dateReceived)
+        public string Valid(string description, string dateReceived, string customerid, string orderprice, string quantity)
         {
             String Error = "";
             DateTime DateTemp;
@@ -156,6 +156,18 @@ namespace ClassLibrary
             if (description.Length > 50)
             {
                 Error = Error + "The description must be less than 50 characters: ";
+            }
+            if (customerid.Length == 0)
+            {
+                Error = Error + "The Customer ID may not be blank: ";
+            }
+            if (orderprice.Length == 0)
+            {
+                Error = Error + "The Order Price may not be blank: ";
+            }
+            if (quantity.Length == 0)
+            {
+                Error = Error + "The Quantity may not be blank: ";
             }
             try
             {
