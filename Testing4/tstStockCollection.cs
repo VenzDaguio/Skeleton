@@ -95,10 +95,74 @@ namespace Testing4
             TestItem.ClothesNo = 1;
             AllStocks.ThisStock = TestItem;
             PrimaryKey = AllStocks.Add();
+            TestItem.ClothesNo = PrimaryKey;
             AllStocks.ThisStock.Find(PrimaryKey);
             Assert.AreEqual(AllStocks.ThisStock, TestItem);
 
         }
+        [TestMethod]
+        public void UpdateMethodOk()
+        {
+            clsStockCollection AllStocks = new clsStockCollection();
+            clsStock TestItem = new clsStock();
+            Int32 PrimaryKey = 0;
+            TestItem.ClothesColour = "red";
+            TestItem.ClothesDescription = "LargeShirt";
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.Price = 1;
+            TestItem.Available = true;
+            TestItem.ClothesNo = 1;
+            AllStocks.ThisStock = TestItem;
+            PrimaryKey = AllStocks.Add();
+            TestItem.StockNo = PrimaryKey;
+            TestItem.ClothesColour = "blue";
+            TestItem.ClothesDescription = "MediumShirt";
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.Price = 3;
+            TestItem.Available = false;
+            TestItem.ClothesNo = 3;
+            AllStocks.ThisStock = TestItem;
+            AllStocks.Update();
+            AllStocks.ThisStock.Find(PrimaryKey);
+            Assert.AreEqual(AllStocks.ThisStock, TestItem);
+
+
+
+            
+        }
+        [TestMethod]
+        public void DeleteMethodOk()
+        {
+            clsStockCollection AllStocks = new clsStockCollection();
+            clsStock TestItem = new clsStock();
+            Int32 PrimaryKey = 0;
+            TestItem.ClothesColour = "red";
+            TestItem.ClothesDescription = "LargeShirt";
+            TestItem.DateAdded = DateTime.Now.Date;
+            TestItem.Price = 1;
+            TestItem.Available = true;
+            TestItem.ClothesNo = 1;
+            AllStocks.ThisStock = TestItem;
+            PrimaryKey = AllStocks.Add();
+            TestItem.StockNo = PrimaryKey;
+            AllStocks.ThisStock.Find(PrimaryKey);
+            AllStocks.Delete();
+            Boolean Found = AllStocks.ThisStock.Find(PrimaryKey);
+            Assert.IsFalse(Found);
+        }
+
+            
+
+
+
+
+           
+
+
+
+
+        
+
 
 
 
