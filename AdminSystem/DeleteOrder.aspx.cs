@@ -19,6 +19,11 @@ public partial class DeleteOrder : System.Web.UI.Page
         clsOrderCollection Orders = new clsOrderCollection();
         Orders.ThisOrder.Find(OrderId);
         Orders.Delete();
-        Response.Redirect("OrderList.aspx");
+        Response.Redirect("OrdersList.aspx");
+    }
+
+    protected void btnNo_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("OrdersList.aspx");
     }
 }

@@ -32,7 +32,7 @@
             <asp:Button ID="btnApply" runat="server" Text="Apply" OnClick="btnApply_Click" />
             <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" />
         </p>
-        <asp:Label ID="lblError" runat="server" Text="lblError"></asp:Label>
+        <asp:Label ID="lblError" runat="server" Text="[lblError]"></asp:Label>
     </form>
 </body>
 </html>

@@ -64,6 +64,7 @@ namespace ClassLibrary
         public void Update()
         {
             clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("OrderId", mThisOrder.OrderId);
             DB.AddParameter("@CustomerId", mThisOrder.CustomerId);
             DB.AddParameter("@OrderPrice", mThisOrder.OrderPrice);
             DB.AddParameter("@Delivered", mThisOrder.Delivered);

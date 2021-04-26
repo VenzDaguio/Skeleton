@@ -12,6 +12,9 @@ namespace Testing1
         //create some test data to pass to the method
         string Description = "A blue shirt";
         string DateReceived = DateTime.Now.Date.ToString();
+        string CustomerId = "10";
+        string OrderPrice = "10.00";
+        string Quantity = "2";
 
         [TestMethod]
         public void InstanceOK()
@@ -246,7 +249,7 @@ namespace Testing1
             //string variable to store any error message
             String Error = "";
             //invoke the method
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -257,7 +260,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             string Error = "";
             string Description = "";
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -267,7 +270,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             String Error = "";
             string Description = "t";
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreEqual(Error, "");
         }
 
@@ -277,7 +280,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             String Error = "";
             string Description = "tt";
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreEqual(Error, "");
         }
 
@@ -287,7 +290,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             String Error = "";
             string Description = "ttttttttttttttttttttttttttttttttttttttttttttttttt";
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreEqual(Error, "");
         }
 
@@ -297,7 +300,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             String Error = "";
             string Description = "tttttttttttttttttttttttttttttttttttttttttttttttttt";
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreEqual(Error, "");
         }
 
@@ -307,7 +310,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             String Error = "";
             string Description = "ttttttttttttttttttttttttt";
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreEqual(Error, "");
         }
 
@@ -317,7 +320,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             String Error = "";
             string Description = "ttttttttttttttttttttttttttttttttttttttttttttttttttt";
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -328,7 +331,7 @@ namespace Testing1
             String Error = "";
             string Description = "";
             Description = Description.PadRight(500, 't');
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -341,7 +344,7 @@ namespace Testing1
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(-100);
             string DateReceived = TestDate.ToString();
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -354,7 +357,7 @@ namespace Testing1
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(-1);
             string DateReceived = TestDate.ToString();
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -366,7 +369,7 @@ namespace Testing1
             DateTime TestDate;
             TestDate = DateTime.Now.Date;
             string DateReceived = TestDate.ToString();
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreEqual(Error, "");
         }
 
@@ -379,7 +382,7 @@ namespace Testing1
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddDays(1);
             string DateReceived = TestDate.ToString();
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -392,7 +395,7 @@ namespace Testing1
             TestDate = DateTime.Now.Date;
             TestDate = TestDate.AddYears(100);
             string DateReceived = TestDate.ToString();
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreNotEqual(Error, "");
         }
 
@@ -403,7 +406,7 @@ namespace Testing1
             clsOrder AnOrder = new clsOrder();
             String Error = "";
             string DateReceived = "this is not a date!";
-            Error = AnOrder.Valid(Description, DateReceived);
+            Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
             Assert.AreNotEqual(Error, "");
         }
     }

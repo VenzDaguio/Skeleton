@@ -8,30 +8,31 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 OrderId; 
     protected void Page_Load(object sender, EventArgs e)
     {
         //create a new instance of clsOrder
-        clsOrder AnOrder = new clsOrder();
-        string CustomerId = txtCustomerID.Text;
-        string OrderPrice = txtOrderPrice.Text;
-        string Description = txtDescription.Text;
-        string Quantity = txtQuantity.Text;
-        string DateReceived = txtDateReceived.Text;
-        string Error = "";
-        Error = AnOrder.Valid(DateReceived, Description);
-        if (Error == "")
+        OrderId = Convert.ToInt32(Session["OrderId"]);
+        if (IsPostBack == false)
         {
-            AnOrder.Description = Description;
-            AnOrder.DateReceived = Convert.ToDateTime(DateReceived);
-            Session["AnOrder"] = AnOrder;
-            Response.Write("OrdersViewer.aspx");
+            if (OrderId != -1)
+            {
+                DisplayOrder();
+            }
         }
-        else
-        {
-            lblError.Text = Error;
-        }
+    }
 
-
+    void DisplayOrder()
+    {
+        clsOrderCollection Orders = new clsOrderCollection();
+        Orders.ThisOrder.Find(OrderId);
+        txtOrderID.Text = Orders.ThisOrder.OrderId.ToString();
+        txtCustomerID.Text = Orders.ThisOrder.CustomerId.ToString();
+        txtDateReceived.Text = Orders.ThisOrder.DateReceived.ToString();
+        txtOrderPrice.Text = Orders.ThisOrder.OrderPrice.ToString();
+        txtDescription.Text = Orders.ThisOrder.Description;
+        txtQuantity.Text = Orders.ThisOrder.Quantity.ToString();
+        chkDelivered.Checked = Orders.ThisOrder.Delivered;
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
@@ -39,46 +40,46 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create a new instance of clsOrder
         clsOrder AnOrder = new clsOrder();
         //capture the order id
-        string OrderId = txtOrderID.Text;
+        //string OrderId = txtOrderID.Text;
         string CustomerId = txtCustomerID.Text;
         string DateReceived = txtDateReceived.Text;
         string OrderPrice = txtOrderPrice.Text;
         string Description = txtDescription.Text;
         string Quantity = txtQuantity.Text;
         string Error = "";
-        Error = AnOrder.Valid(Description, DateReceived);
+        Error = AnOrder.Valid(Description, DateReceived, CustomerId, OrderPrice, Quantity);
         if (Error == "")
         {
-            AnOrder.OrderId = Convert.ToInt32(OrderId);
+            AnOrder.OrderId = OrderId;
             AnOrder.CustomerId = Convert.ToInt32(CustomerId);
             AnOrder.DateReceived = Convert.ToDateTime(DateReceived);
-            AnOrder.OrderPrice = Convert.ToInt32(OrderPrice);
+            AnOrder.OrderPrice = Convert.ToDecimal(OrderPrice);
             AnOrder.Description = Description;
             AnOrder.Quantity = Convert.ToInt32(Quantity);
             AnOrder.Delivered = chkDelivered.Checked;
+
             clsOrderCollection OrderList = new clsOrderCollection();
 
-            if (Convert.ToInt32(OrderId) == -1)
+            if (OrderId == -1)
             {
                 OrderList.ThisOrder = AnOrder;
                 OrderList.Add();
-            } 
+            }
 
-        else
-        {
-            OrderList.ThisOrder.Find(Convert.ToInt32(OrderId));
-            OrderList.ThisOrder = AnOrder;
-            OrderList.Update();
-        }
+            else
+            {
+                OrderList.ThisOrder.Find(OrderId);
+                OrderList.ThisOrder = AnOrder;
+                OrderList.Update();
+            }
 
-            Response.Redirect("OrderList.aspx");
+            Response.Redirect("OrdersList.aspx");
         }
         else
         {
             lblError.Text = Error;
         }
     }
-
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
@@ -104,8 +105,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void btnCancel_Click(object sender, EventArgs e)
     {
-
+        clsOrderCollection OrderList = new clsOrderCollection();
+        Response.Redirect("OrdersList.aspx");
+        
     }
 }
+
