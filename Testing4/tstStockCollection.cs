@@ -7,6 +7,7 @@ namespace Testing4
 {
     [TestClass]
     public class tstStockCollection
+    
     {
         [TestMethod]
         public void InstanceOK()
@@ -150,18 +151,53 @@ namespace Testing4
             Boolean Found = AllStocks.ThisStock.Find(PrimaryKey);
             Assert.IsFalse(Found);
         }
+        [TestMethod]
+        public void ReportByClothesDescriptionMethodOK()
+        {
+            clsStockCollection AllStocks = new clsStockCollection();
+            clsStockCollection FilteredStocks = new clsStockCollection();
+            FilteredStocks.ReportByClothesDescription("");
+            Assert.AreEqual(AllStocks.Count, FilteredStocks.Count);
+        }
 
-            
+        [TestMethod]
+        public void ReportByClothesDescriptionTestDataFound()
+        {
+            clsStockCollection FilteredStocks = new clsStockCollection();
+            Boolean OK = true;
+            FilteredStocks.ReportByClothesDescription("xxx");
+            if (FilteredStocks.Count == 2)
+            {
+                if (FilteredStocks.StockList[0].ClothesNo != 37)
+                {
+                    OK = false;
+                }
+                if (FilteredStocks.StockList[1].ClothesNo != 37)
+                {
+                    OK = false;
+                }
+
+            }
+            else
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
 
 
 
 
-           
 
 
 
 
-        
+
+
+
+
+
+
 
 
 
