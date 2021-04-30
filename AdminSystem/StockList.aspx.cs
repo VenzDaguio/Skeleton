@@ -8,6 +8,9 @@ using ClassLibrary;
 
 public partial class _1_List : System.Web.UI.Page
 {
+    
+
+
     //this function handles the load event 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -28,10 +31,10 @@ public partial class _1_List : System.Web.UI.Page
     void DisplayStocks()
     {
         clsStockCollection Stocks = new clsStockCollection();
-        lstStocks.DataSource = Stocks.StockList;
-        lstStocks.DataValueField = "ClothesNo";
-        lstStocks.DataTextField = "ClothesDescription";
-        lstStocks.DataBind();
+        lstStockList.DataSource = Stocks.StockList;
+        lstStockList.DataValueField = "ClothesNo";
+        lstStockList.DataTextField = "ClothesDescription";
+        lstStockList.DataBind();
 
     }
     protected void btnAdd_Click(object sender, EventArgs e)
@@ -73,5 +76,28 @@ public partial class _1_List : System.Web.UI.Page
 
         }
 
+    }
+
+    protected void BtnApply_Click(object sender, EventArgs e)
+    {
+        clsStockCollection Orders = new clsStockCollection();
+        Orders.ReportByClothesDescription(txtFilter.Text);
+        lstStockList.DataSource = Orders.StockList;
+        lstStockList.DataValueField = "OrderId";
+        lstStockList.DataTextField = "Description";
+        lstStockList.DataBind();
+
+    }
+
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        clsStockCollection Stocks = new clsStockCollection();
+        Stocks.ReportByClothesDescription("");
+        txtFilter.Text = "";
+        lstStockList.DataSource = Stocks.StockList;
+        lstStockList.DataValueField = "OrderId";
+        lstStockList.DataTextField = "Description";
+        lstStockList.DataBind();
     }
 }

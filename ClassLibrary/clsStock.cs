@@ -118,6 +118,20 @@ namespace ClassLibrary
         }
 
         public string ClothesNO { get; set; }
+        private int mStockNo;
+        public int StockNo
+        {
+            get
+            {
+                //return the private data
+                return mStockNo;
+            }
+            set
+            {
+                //set the private data
+                mStockNo = value;
+            }
+        }
 
         public bool Find(int clothesNo)
         {
