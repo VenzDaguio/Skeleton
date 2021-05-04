@@ -1,9 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Collections.Generic;
 
-namespace tstCustomerCollection
+namespace Test_Framework
 {
     [TestClass]
     public class tstCustomerCollection
@@ -30,6 +30,7 @@ namespace tstCustomerCollection
             TestList.Add(TestItem);
             AllCustomers.CustomerList = TestList;
             Assert.AreEqual(AllCustomers.CustomerList, TestList);
+
         }
         [TestMethod]
         public void ThisCustomerPropertyOK()
@@ -45,7 +46,6 @@ namespace tstCustomerCollection
 
             AllCustomers.ThisCustomer = TestCustomer;
             Assert.AreEqual(AllCustomers.ThisCustomer, TestCustomer);
-
         }
         [TestMethod]
         public void ListAndCountOK()
@@ -53,6 +53,7 @@ namespace tstCustomerCollection
             clsCustomerCollection AllCustomers = new clsCustomerCollection();
             List<clsCustomer> TestList = new List<clsCustomer>();
             clsCustomer TestItem = new clsCustomer();
+
             TestItem.Over18 = true;
             TestItem.CustomerID = 1;
             TestItem.CustomerPayment = "Siren Ocean etc.";
@@ -64,11 +65,11 @@ namespace tstCustomerCollection
             AllCustomers.CustomerList = TestList;
             Assert.AreEqual(AllCustomers.Count, TestList.Count);
 
+
         }
         [TestMethod]
         public void AddMethodOK()
         {
-            //create an instance of the class we want to create
             clsCustomerCollection AllCustomers = new clsCustomerCollection();
             clsCustomer TestItem = new clsCustomer();
             Int32 PrimaryKey = 0;
@@ -83,46 +84,16 @@ namespace tstCustomerCollection
             AllCustomers.ThisCustomer = TestItem;
             PrimaryKey = AllCustomers.Add();
             TestItem.CustomerID = PrimaryKey;
-
             AllCustomers.ThisCustomer.Find(PrimaryKey);
-
-            //test to see that the result is correct
-            Assert.AreNotEqual(AllCustomers.ThisCustomer, TestItem);
-        }
-        public void UpdateMethodOK()
-        {
-            clsCustomerCollection AllCustomer = new clsCustomerCollection();
-            clsCustomer TestItem = new clsCustomer();
-
-            Int32 PrimaryKey = 0;
-            TestItem.Over18 = true;
-            TestItem.CustomerPayment = "Siren Ocean etc.";
-            TestItem.CustomerAddress = "Western Road";
-            TestItem.SignUpDate = DateTime.Now.Date;
-            TestItem.DateOfBirth = DateTime.Now.Date;
-
-            AllCustomer.ThisCustomer = TestItem;
-            PrimaryKey = AllCustomer.Add();
-            TestItem.CustomerID = PrimaryKey;
-
-            TestItem.Over18 = false;
-            TestItem.CustomerPayment = "Siren Ocean etc";
-            TestItem.CustomerAddress = "Western Road";
-            TestItem.SignUpDate = DateTime.Now.Date;
-            TestItem.DateOfBirth = DateTime.Now.Date;
-
-            AllCustomer.ThisCustomer = TestItem;
-            AllCustomer.Update();
-            AllCustomer.ThisCustomer.Find(PrimaryKey);
-            Assert.AreEqual(AllCustomer.ThisCustomer, TestItem);
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
         [TestMethod]
         public void DeleteMethodOK()
         {
             clsCustomerCollection AllCustomers = new clsCustomerCollection();
             clsCustomer TestItem = new clsCustomer();
-
             Int32 PrimaryKey = 0;
+
             TestItem.Over18 = true;
             TestItem.CustomerID = 1;
             TestItem.CustomerPayment = "Siren Ocean etc.";
@@ -135,23 +106,72 @@ namespace tstCustomerCollection
             TestItem.CustomerID = PrimaryKey;
             AllCustomers.ThisCustomer.Find(PrimaryKey);
             AllCustomers.Delete();
-
             Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
             Assert.IsFalse(Found);
         }
         [TestMethod]
-        public void RepostByCustomerAddressMethodOK()
+        public void UpdateMethodOK()
         {
             clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomer TestItem = new clsCustomer();
+            Int32 PrimaryKey = 0;
+
+            TestItem.Over18 = true;
+            TestItem.CustomerID = 1;
+            TestItem.CustomerPayment = "Siren Ocean etc.";
+            TestItem.CustomerAddress = "Western Road";
+            TestItem.SignUpDate = DateTime.Now.Date;
+            TestItem.DateOfBirth = DateTime.Now.Date;
+
+            AllCustomers.ThisCustomer = TestItem;
+
+            PrimaryKey = AllCustomers.Add();
+            TestItem.CustomerID = PrimaryKey;
+            TestItem.Over18 = true;
+            TestItem.CustomerID = 1;
+            TestItem.CustomerPayment = "Siren Ocean etc.";
+            TestItem.CustomerAddress = "Western Road";
+            TestItem.SignUpDate = DateTime.Now.Date;
+            TestItem.DateOfBirth = DateTime.Now.Date;
+
+            AllCustomers.ThisCustomer = TestItem;
+            AllCustomers.Update();
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
+        [TestMethod]
+        public void ReportByCustomerAddressMethodOK()
+        {
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            FilteredCustomers.ReportByCustomerAddress("");
+            Assert.AreEqual(AllCustomers.Count, FilteredCustomers.Count);
+        }
+        [TestMethod]
+        public void ReportByCustomerAddressNoneFound()
+        {
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            FilteredCustomers.ReportByCustomerAddress("xxx xxx");
+            Assert.AreEqual(0, FilteredCustomers.Count);
+        }
+        [TestMethod]
+        public void ReportByCustomerAddressTestDataFound()
+        {
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+
             Boolean OK = true;
+
             FilteredCustomers.ReportByCustomerAddress("yyy yyy");
-            if(Filteredcustomers.Count == 2)
+
+            if (FilteredCustomers.Count == 2)
             {
-                if(FilteredCustomers.CustomerList[0].CustomerID != 36)
+                //check that the first record is ID 36
+                if (FilteredCustomers.CustomerList[0].CustomerID != 36)
                 {
                     OK = false;
                 }
-                if(FilteredCustomers.CustomerList[1].CustomerID != 37)
+                //check that the first record is ID 37
+                if (FilteredCustomers.CustomerList[1].CustomerID != 37)
                 {
                     OK = false;
                 }
@@ -160,8 +180,8 @@ namespace tstCustomerCollection
             {
                 OK = false;
             }
+            //test to see that there are no records
             Assert.IsTrue(OK);
         }
-
     }
 }
