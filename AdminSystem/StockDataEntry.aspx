@@ -11,7 +11,7 @@
         <div>
         </div>
         <asp:Label ID="iblClothesNo" runat="server" Text="ClothesNo" width="190px"></asp:Label>
-        <asp:TextBox ID="txtClothesNo" runat="server"></asp:TextBox>
+        <asp:TextBox ID="txtClothesNo" runat="server" ></asp:TextBox>
         <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
         <p>
             <asp:Label ID="iblClothesDescription" runat="server" Text="ClothesDescription "></asp:Label>
@@ -31,7 +31,7 @@
         <asp:Label ID="iblError" runat="server"></asp:Label>
         <p>
             <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click1" Text="Ok" />
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click1" />
         </p>
     </form>
 </body>

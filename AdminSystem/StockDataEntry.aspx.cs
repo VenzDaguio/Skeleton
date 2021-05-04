@@ -10,7 +10,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 {
     Int32 ClothesNo;
 
-    public object txtAvailable { get; private set; }
+    
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -53,48 +53,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     
 
-    protected void btnOK_Click(object sender, EventArgs e)
-    {
-        //create an instance of the stock class
-        clsStock AnStock = new clsStock();
-        //capture the clothes colour
-        string ClothesColour = txtClothesColour.Text;
-        //capture the ClothesDescription
-        string ClothesDescription = txtClothesDescription.Text;
-        //capture the price
-        string Price = txtPrice.Text;
-        //capture the date added
-        string DateAdded = txtDateAdded.Text;
-        string Error = "";
-        //validate the error
-        Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
-
-
-        if (Error == "")
-        {
-            //capture clothes Description
-            AnStock.ClothesDescription = ClothesDescription;
-            //capture clothes colour
-            AnStock.ClothesColour = ClothesColour;
-            
-            //capture dateadded
-            AnStock.DateAdded = Convert.ToDateTime(DateAdded);
-            AnStock.Available = chkAvailable.Checked;
-            clsStockCollection StockList = new clsStockCollection();
-            StockList.ThisStock = AnStock;
-            StockList.Add();
-            
-            //redirect to viewer page
-            Response.Redirect("StockViewer.aspx");
-            
-
-        }
-        else
-        {
-            //display the error message
-            iblError.Text = Error;
-        }
-}
+    
 
     protected void btnFind_Click(object sender, EventArgs e)
     {
@@ -123,10 +82,55 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 
-    protected void btnCancel_Click(object sender, EventArgs e)
-    
+   
+    protected void btnCancel_Click1(object sender, EventArgs e)
     {
         clsStockCollection StockList = new clsStockCollection();
         Response.Redirect("StockList.aspx");
     }
+
+    protected void btnOK_Click1(object sender, EventArgs e)
+    {
+        //create an instance of the stock class
+        clsStock AnStock = new clsStock();
+        //capture the clothes colour
+        string ClothesColour = txtClothesColour.Text;
+        //capture the ClothesDescription
+        string ClothesDescription = txtClothesDescription.Text;
+        //capture the price
+        string Price = txtPrice.Text;
+        //capture the date added
+        string DateAdded = txtDateAdded.Text;
+        string Error = "";
+        //validate the error
+        Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+
+
+        if (Error == "")
+        {
+            //capture clothes Description
+            AnStock.ClothesDescription = ClothesDescription;
+            //capture clothes colour
+            AnStock.ClothesColour = ClothesColour;
+
+            //capture dateadded
+            AnStock.DateAdded = Convert.ToDateTime(DateAdded);
+            AnStock.Available = chkAvailable.Checked;
+            clsStockCollection StockList = new clsStockCollection();
+            StockList.ThisStock = AnStock;
+            StockList.Add();
+
+            //redirect to viewer page
+            Response.Redirect("StockViewer.aspx");
+
+
+        }
+        else
+        {
+            //display the error message
+            iblError.Text = Error;
+        }
+    }
+
+    
 }
