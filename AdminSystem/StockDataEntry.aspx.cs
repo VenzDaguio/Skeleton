@@ -8,46 +8,47 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    Int32 ClothesNo;
+
     public object txtAvailable { get; private set; }
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        //create an instance of the stock class
-        clsStock AnStock = new clsStock();
-        //capture the clothes colour
-        string ClothesColour = txtClothesColour.Text;
-        //capture the ClothesDescription
-        string ClothesDescription = txtClothesDescription.Text;
-        //capture the price
-        string Price = txtPrice.Text;
-        //capture the date added
-        string DateAdded = txtDateAdded.Text;
-        string Error = "";
-        //validate the error
-        Error = AnStock.Valid(ClothesDescription, ClothesColour, DateAdded, Price);
+       
 
-
-        if (Error == "")
+        ClothesNo = Convert.ToInt32(Session["ClothesNo"]);
+        if(IsPostBack == false)
         {
-            //capture clothes Description
-            AnStock.ClothesDescription = ClothesDescription;
-            //capture clothes colour
-            AnStock.ClothesColour = ClothesColour;
-
-            //capture dateadded
-            AnStock.DateAdded = Convert.ToDateTime(DateAdded);
-            Session["AnStock"] = AnStock;
-            //redirect to viewer page
-            Response.Write("StockViewer.aspx");
-
-
+            if(ClothesNo != -1)
+            {
+                DisplayClothes();
+            }
         }
-        else
-        {
-            //display the error message
-            iblError.Text = Error;
-        }
+
+
+
+        
+
+
+       
     }
+
+    void DisplayClothes()
+    {
+        clsStockCollection Stocks = new clsStockCollection();
+        Stocks.ThisStock.Find(ClothesNo);
+
+        txtClothesNo.Text = Stocks.ThisStock.ClothesNo.ToString();
+        
+        txtDateAdded.Text = Stocks.ThisStock.DateAdded.ToString();
+        txtPrice.Text = Stocks.ThisStock.Price.ToString();
+        txtClothesDescription.Text = Stocks.ThisStock.ClothesDescription;
+        txtClothesColour.Text = Stocks.ThisStock.ClothesColour.ToString();
+        chkAvailable.Checked = Stocks.ThisStock.Available;
+
+    }
+
+    
 
 
     
@@ -122,8 +123,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 
-    protected void btnOK_Click1(object sender, EventArgs e)
+    protected void btnCancel_Click(object sender, EventArgs e)
+    
     {
-
+        clsStockCollection StockList = new clsStockCollection();
+        Response.Redirect("StockList.aspx");
     }
 }
