@@ -33,9 +33,9 @@ namespace Testing4
             //create some test data
             Boolean TestData = true;
             //assign the  data to the property
-            AnStock.Active = TestData;
+            AnStock.Available = TestData;
             // test to see if the two values are the same
-            Assert.AreEqual(AnStock.Active, TestData);
+            Assert.AreEqual(AnStock.Available, TestData);
         }
         public void DateAddedPropertyOK()
         {
@@ -46,7 +46,7 @@ namespace Testing4
             // assign the data to the property
             AnStock.DateAdded = TestData;
             //test to see that the two values are the same
-            Assert.AreEqual(AnStock.DateStock, TestData);
+            Assert.AreEqual(AnStock.DateAdded, TestData);
         }
         [TestMethod]
         public void ClothesNoPropertyOK()
