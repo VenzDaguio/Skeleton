@@ -2,6 +2,11 @@
 
 <!DOCTYPE html>
 <script runat="server">
+
+    protected void lstCustomerList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
 </script>
 
 
@@ -12,16 +17,22 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:TextBox ID="TextBox1" runat="server" style="z-index: 1; left: 10px; top: 15px; position: absolute"></asp:TextBox>
-            <asp:ListBox ID="ListBox1" runat="server" style="z-index: 1; left: 6px; top: 38px; position: absolute; height: 357px; width: 318px" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged"></asp:ListBox>
         </div>
-        <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" style="z-index: 1; left: 10px; top: 401px; position: absolute" Text="Add" />
-        <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" style="z-index: 1; left: 54px; top: 402px; position: absolute" Text="Edit" />
-        <asp:Button ID="btnDelete" runat="server" style="z-index: 1; left: 100px; top: 402px; position: absolute; right: 339px;" Text="Delete" OnClick="btn_Click" />
-        <asp:TextBox ID="TextBox2" runat="server" style="z-index: 1; left: 124px; top: 438px; position: absolute; height: 24px"></asp:TextBox>
-        <asp:Label ID="LblAddress" runat="server" style="z-index: 1; left: 14px; top: 444px; position: absolute; width: 110px; height: 5px" Text="Enter an Address"></asp:Label>
-        <asp:Button ID="BtnApply" runat="server" style="z-index: 1; left: 13px; top: 470px; position: absolute" Text="Apply" />
-        <asp:Button ID="BtnClear" runat="server" style="z-index: 1; left: 72px; top: 470px; position: absolute; height: 26px; width: 47px" Text="Clear" />
+        <asp:ListBox ID="lstCustomerList" runat="server" Height="366px" OnSelectedIndexChanged="lstCustomerList_SelectedIndexChanged" Width="422px"></asp:ListBox>
+        <p>
+            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
+            <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" />
+            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" />
+        </p>
+        <p>
+            Enter a description
+            <asp:TextBox ID="txtFilter" runat="server"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Button ID="btnApply" runat="server" Text="Apply" OnClick="btnApply_Click" />
+            <asp:Button ID="btnClear" runat="server" Text="Clear" OnClick="btnClear_Click" />
+        </p>
+        <asp:Label ID="lblError" runat="server" Text="[lblError]"></asp:Label>
     </form>
 </body>
 </html>
