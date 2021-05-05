@@ -11,7 +11,7 @@ namespace ClassLibrary
         public clsStockCollection()
         {
             clsDataConnection DB = new clsDataConnection();
-            DB.Execute("sproc_tblOrder_SelectAll");
+            DB.Execute("sproc_tblClothes_SelectAll");
             PopulateArray(DB);
         }
 
@@ -30,6 +30,7 @@ namespace ClassLibrary
                 AnStock.Price = Convert.ToInt32(DB.DataTable.Rows[Index]["Price"]);
                 AnStock.ClothesColour = Convert.ToString(DB.DataTable.Rows[Index]["ClothesColour"]);
                 AnStock.DateAdded = Convert.ToDateTime(DB.DataTable.Rows[Index]["DateAdded"]);
+                mStockList.Add(AnStock);
                 
                 Index++;
             }
