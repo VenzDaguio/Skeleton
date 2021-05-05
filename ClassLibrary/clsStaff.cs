@@ -85,15 +85,33 @@ namespace ClassLibrary
 
         public bool Find(decimal Salary )
         {
-            //set the private data members to the test data value
-            mSalary = 1000;
-           // mStaffID = "123";
-            mStaffPosition = "Member";
-            mFirstName= "Kiana";
-            mDateOfBirth = Convert.ToDateTime("26/05/2015");
-            mStartDate = Convert.ToDateTime("26/05/2015");
-            //always return true
-            return true;
-}
+            //Create an instance of the data connection
+            clsDataConnection DB = new clsDataConnection();
+            //Add the parameter for the address to search for 
+            DB.AddParameter("@FirstName", FirstName);
+            //Execute the stored procedure
+            DB.Execute("sproc_tblFirstName_FilterbyFirstName");
+            //If one record is found (there should be either one or zero)
+            if (DB.Count == 1)
+                {
+                //Copy the data from the database to the private data members 
+                mFirstName = Convert.ToInt32(DB.DataTable.Rows[0]["FirstName"]);
+                mSalary = Convert.ToInt32(DB.DataTable.Rows[0]["Salary"]);
+                mStaffID = Convert.ToInt32(DB.DataTable.Rows[0]["StaffID"]);
+                mStaffPosition = Convert.ToInt32(DB.DataTable.Rows[0]["StaffPosition"]);
+                mDateOfBirth = Convert.ToInt32(DB.DataTable.Rows[0]["DateOfBirth"]);
+                mStartDate = Convert.ToInt32(DB.DataTable.Rows[0]["StartDate"]);
+
+                //Return that everything worked okay
+                return true;
+                }
+
+            else 
+            {
+                //return false indicating a problem
+                return false;
+
+            }
         }
+    }
     }

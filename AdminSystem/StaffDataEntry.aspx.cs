@@ -21,26 +21,41 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //Create an instance of the staff class
         clsStaff AnStaff = new clsStaff();
-        //Variable to store the primary key 
-        Int32 StaffID;
-        //Variable to store the result of the find operation
-        Boolean Found = false;
-        //get the primary key entered by the user
-        StaffID = Convert.ToInt32(txtStaffID.Text);
-        //Find the record
-        Found = AnStaff.Find(StaffID);
-        //if found
-        if(Found == true)
+        //Capture the staff ID
+        String StaffID = txtStaffID.Text;
+        //Capture the start date
+        String StartDate = txtStartDate.Text;
+        //Capture the salary
+        String Salary = txtSalary.Text;
+        //Capture the first name
+        String FirstName = txtFirstName.Text;
+        //Capture the date of birth
+        String DateOfBirth = txtDateOfBirth.Text;
+        //Variable to store any error messages
+        String Error = " ";
+        //Validate the data
+        Error = AnStaff.Valid(StaffID, StartDate, Salary, FirstName, DateOfBirth);
+        if (Error == "" )
         {
-            // display the values of the properties in the form
-            txtStartDate.Text = AnStaff.StartDate;
-            txtSalary.Text = AnStaff.Salary;
-            txtFirstName.Text = AnStaff.FirstName;
-            txtDateOfBirth.Text = AnStaff.DateOfBirth;
-            chkAdmin.Checked = AnStaff.Admin;
-            chkMemberOfStaff.Checked = AnStaff.MemberOfStaff;
+        //Capture the staff ID
+        AnStaff.StaffID = txtStaffID.Text;
+        //Capture the start date
+        AnStaff.StartDate = Convert.ToDateTime(txtStartDate.Text);
+        //Capture the salary
+        AnStaff.Salary = txtSalary.Text;
+        //Capture the first name
+        AnStaff.FirstName = txtFirstName.Text;
+        //Capture the Date Of Birth
+        AnStaff.DateOfBirth = Convert.ToDateTime(txtDateOfBirth.Text);
+        Session["AnStaff"] = AnStaff;
+        //Redirect to the viewer page
+        Response.Write("StaffViewer.aspx");
         }
-
+        else
+        {
+            //display the error message
+            lblError.Text = Error;
+        }
 
     }
 }
