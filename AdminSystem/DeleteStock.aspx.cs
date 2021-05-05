@@ -16,10 +16,15 @@ public partial class DeleteStock : System.Web.UI.Page
 
     protected void Button2_Click(object sender, EventArgs e)
     {
-        clsStockCollection StockBook = new clsStockCollection();
-        StockBook.ThisStock.Find(ClothesNo);
-        StockBook.Delete();
+        clsStockCollection Stocks = new clsStockCollection();
+        Stocks.ThisStock.Find(ClothesNo);
+        Stocks.Delete();
         Response.Redirect("StockList.aspx");
 
+    }
+
+    protected void BtnNo_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("StockList.aspx");
     }
 }
