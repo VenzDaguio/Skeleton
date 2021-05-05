@@ -102,6 +102,12 @@ public partial class _1_DataEntry : System.Web.UI.Page
             txtOrderPrice.Text = AnOrder.OrderPrice.ToString();
             txtDescription.Text = AnOrder.Description;
             txtQuantity.Text = AnOrder.Quantity.ToString();
+            lblError.Text = "";
+        }
+
+        if (Found == false)
+        {
+            lblError.Text = "Order ID not found";
         }
     }
 
