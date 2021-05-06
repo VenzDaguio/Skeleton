@@ -40,7 +40,7 @@ public partial class _1_List : System.Web.UI.Page
     }
     protected void btnAdd_Click(object sender, EventArgs e)
     {
-        Session["ClotheNo"] = -1;
+        Session["ClotheNo"] = 1;
         Response.Redirect("StockDataEntry.aspx");
     }
    
@@ -84,8 +84,8 @@ public partial class _1_List : System.Web.UI.Page
         clsStockCollection Orders = new clsStockCollection();
         Orders.ReportByClothesDescription(txtFilter.Text);
         lstStockList.DataSource = Orders.StockList;
-        lstStockList.DataValueField = "OrderId";
-        lstStockList.DataTextField = "Description";
+        lstStockList.DataValueField = "ClothesNo";
+        lstStockList.DataTextField = "ClothesDescription";
         lstStockList.DataBind();
 
     }
@@ -97,8 +97,8 @@ public partial class _1_List : System.Web.UI.Page
         Stocks.ReportByClothesDescription("");
         txtFilter.Text = "";
         lstStockList.DataSource = Stocks.StockList;
-        lstStockList.DataValueField = "OrderId";
-        lstStockList.DataTextField = "Description";
+        lstStockList.DataValueField = "ClothesNo";
+        lstStockList.DataTextField = "ClothesDescription";
         lstStockList.DataBind();
     }
 }
