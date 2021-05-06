@@ -63,7 +63,7 @@ namespace ClassLibrary
         {
             get
             {
-                return ThisStock;
+                return mThisStock;
             }
 
             set
