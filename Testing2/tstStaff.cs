@@ -22,7 +22,7 @@ namespace Testing2
             //create an instance of the class we want to create
             clsStaff AnStaff = new clsStaff();
             //create some test data to assign to the property
-            Boolean TestData = true;
+            Int32 TestData = true;
             //assign the data to the property
             AnStaff.StaffID = TestData;
             //test to see that the two values are the same
@@ -90,7 +90,20 @@ namespace Testing2
             //create an instance of the class we want to create
             clsStaff AnStaff = new clsStaff();
             //create some test data to assign to the property
-            String TestData = "Admin";
+            String TestData = "Member of staff";
+            //assign the data to the property
+            AnStaff.StaffPosition = TestData;
+            //test to see that the two values are the same
+            Assert.AreEqual(AnStaff.StaffPosition, TestData);
+        }
+
+        [TestMethod]
+        public void AdminPropertyOK()
+        {
+            //create an instance of the class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //create some test data to assign to the property
+            Boolean TestData = "False";
             //assign the data to the property
             AnStaff.StaffPosition = TestData;
             //test to see that the two values are the same
@@ -106,7 +119,7 @@ namespace Testing2
             //boolean variable to store the result of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 StaffID = 1;
+            Int32 StaffID = 11317;
             //invoke the method
             Found = AnStaff.Find(StaffID);
             //test to see that the result is correct
@@ -123,7 +136,7 @@ namespace Testing2
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffID = 1;
+            Int32 StaffID = 11312;
             //invoke the method
             Found = AnStaff.Find(StaffID);
             //check the address no
@@ -145,9 +158,9 @@ namespace Testing2
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 DateOfBirth = 21;
+            Int32 StaffID = 11312;
             //invoke the method
-            Found = AnStaff.Find(DateOfBirth);
+            Found = AnStaff.Find(StaffID);
             //check the property
             if (AnStaff.StartDate != Convert.ToDateTime("16/09/2015"))
             {
@@ -167,7 +180,7 @@ namespace Testing2
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Decimal Salary = 21;
+            Decimal Salary = 1000.00;
             //invoke the method
             Found = AnStaff.Find(Salary);
             //check the property
@@ -191,9 +204,9 @@ namespace Testing2
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffID = 21;
+            Int32 StaffID = 11312;
             //invoke the method
-            Found = AnStaff.Find(FirstName);
+            Found = AnStaff.Find(StaffID);
             //check the property
             if (AnStaff.FirstName != "Kiana")
             {
@@ -213,9 +226,9 @@ namespace Testing2
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StartDate = 21;
+            Int32 StaffID = 11315;
             //invoke the method
-            Found = AnStaff.Find(StartDate);
+            Found = AnStaff.Find(StaffID);
             //check the property
             if (AnStaff.StartDate != Convert.ToDateTime("16/09/2015"))
             {
@@ -235,11 +248,33 @@ namespace Testing2
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 StaffID = 21;
+            Int32 StaffID = 11316;
             //invoke the method
-            Found = AnStaff.Find(StaffPosition);
+            Found = AnStaff.Find(StaffID);
             //check the property
             if (AnStaff.StaffPosition != true)
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
+        }
+
+        [TestMethod]
+        public void AdminFound()
+        {
+            //create an instance of the class we want to create
+            clsStaff AnStaff = new clsStaff();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //boolean variable to record if data is OK (assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 StaffID = 11316;
+            //invoke the method
+            Found = AnStaff.Find(StaffID);
+            //check the property
+            if (AnStaff.Admin != true)
             {
                 OK = false;
             }
@@ -283,7 +318,7 @@ namespace Testing2
             //string variable to store any error message
             String Error = "";
             //create some test data to pass to the method
-            string StaffPosition = "a"; //this should be ok
+            string StaffPosition = "Admin"; //this should be ok
             //invoke the method
             Error = AnStaff.Valid(StaffPosition, StaffID, FirstName, StartDate, DateOfBirth);
             //test to see that the result is correct
@@ -785,7 +820,7 @@ namespace Testing2
             //set the date totodays date
             TestDate = DateTime.Now.Date;
             //convert the date variable to a string variable
-            string DateOfBirt = TestDate.ToString();
+            string DateOfBirth = TestDate.ToString();
             //invoke the method
             Error = AnStaff.Valid(StaffPosition, StaffID, FirstName, StartDate, DateOfBirth);
             //test to see that the result is correct

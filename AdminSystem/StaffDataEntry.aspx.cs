@@ -14,11 +14,6 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOk_Click(object sender, EventArgs e)
     {
-        Response.Redirect("StaffDataEntry.aspx");
-    }
-
-    protected void btnFind_Click(object sender, EventArgs e)
-    {
         //Create an instance of the staff class
         clsStaff AnStaff = new clsStaff();
         //Capture the staff ID
@@ -35,27 +30,33 @@ public partial class _1_DataEntry : System.Web.UI.Page
         String Error = " ";
         //Validate the data
         Error = AnStaff.Valid(StaffID, StartDate, Salary, FirstName, DateOfBirth);
-        if (Error == "" )
+        if (Error == "")
         {
-        //Capture the staff ID
-        AnStaff.StaffID = txtStaffID.Text;
-        //Capture the start date
-        AnStaff.StartDate = Convert.ToDateTime(txtStartDate.Text);
-        //Capture the salary
-        AnStaff.Salary = txtSalary.Text;
-        //Capture the first name
-        AnStaff.FirstName = txtFirstName.Text;
-        //Capture the Date Of Birth
-        AnStaff.DateOfBirth = Convert.ToDateTime(txtDateOfBirth.Text);
-        Session["AnStaff"] = AnStaff;
-        //Redirect to the viewer page
-        Response.Write("StaffViewer.aspx");
+            //Capture the staff ID
+            AnStaff.StaffID = txtStaffID.Text;
+            //Capture the start date
+            AnStaff.StartDate = Convert.ToDateTime(txtStartDate.Text);
+            //Capture the salary
+            AnStaff.Salary = txtSalary.Text;
+            //Capture the first name
+            AnStaff.FirstName = txtFirstName.Text;
+            //Capture the Date Of Birth
+            AnStaff.DateOfBirth = Convert.ToDateTime(txtDateOfBirth.Text);
+            Session["AnStaff"] = AnStaff;
+            //Redirect to the viewer page
+            Response.Write("StaffViewer.aspx");
         }
         else
         {
             //display the error message
             lblError.Text = Error;
         }
-
     }
+
+    protected void btnFind_Click(object sender, EventArgs e)
+    {
+        
+    }
+
+   
 }
